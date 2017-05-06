@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import WebKit
 
 class StoryViewController: UIViewController {
   @IBOutlet weak var storyTitleLabel: UILabel!
   @IBOutlet weak var storyAuthorLabel: UILabel!
   @IBOutlet weak var storyScoreLabel: UILabel!
-  @IBOutlet weak var storyWebView: UIWebView!
+  @IBOutlet weak var displayStoryView: UIView!
   
+  private var wkViewConfiguration: WKWebViewConfiguration!
   private var _hackerStory: HackerNewsStory!
   
   var hackerStory: HackerNewsStory! {
@@ -27,18 +29,39 @@ class StoryViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    wkViewConfiguration = WKWebViewConfiguration()
+    wkViewConfiguration.ignoresViewportScaleLimits = true
+    wkViewConfiguration.allowsInlineMediaPlayback = true
     
     storyTitleLabel.text = hackerStory.Title
     storyAuthorLabel.text = hackerStory.Author
     storyScoreLabel.text = "score \(hackerStory.Score)"
     
-    if let url = hackerStory.Url {
-      print("calling url: \(url.absoluteString)")
-      storyWebView.loadRequest(URLRequest(url: url))
+    if (hackerStory.Url != nil) {
+      setupURLView()
+      
+    } else if (hackerStory.Text != nil) {
+      setupTextView()
     }
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  
+  private func setupURLView() {
+    print("setupURLView()")
+    let webView = WKWebView(frame: view.frame, configuration: wkViewConfiguration)
+    webView.load(URLRequest(url: hackerStory.Url!))
+    
+    displayStoryView.addSubview(webView)
+  }
+  
+  private func setupTextView() {
+    print("setupTextView(()")
+    let textView = UITextView(frame: displayStoryView.frame)
+    textView.text = hackerStory.Text
+    
+    displayStoryView.addSubview(textView)
   }
 }
