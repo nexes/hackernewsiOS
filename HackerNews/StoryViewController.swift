@@ -9,36 +9,36 @@
 import UIKit
 
 class StoryViewController: UIViewController {
-    @IBOutlet weak var storyTitleLabel: UILabel!
-    @IBOutlet weak var storyAuthorLabel: UILabel!
-    @IBOutlet weak var storyScoreLabel: UILabel!
-    @IBOutlet weak var storyWebView: UIWebView!
+  @IBOutlet weak var storyTitleLabel: UILabel!
+  @IBOutlet weak var storyAuthorLabel: UILabel!
+  @IBOutlet weak var storyScoreLabel: UILabel!
+  @IBOutlet weak var storyWebView: UIWebView!
+  
+  private var _hackerStory: HackerNewsStory!
+  
+  var hackerStory: HackerNewsStory! {
+    set {
+      _hackerStory = newValue
+    }
+    get {
+      return _hackerStory
+    }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    private var _hackerStory: HackerNewsStory!
+    storyTitleLabel.text = hackerStory.Title
+    storyAuthorLabel.text = hackerStory.Author
+    storyScoreLabel.text = "score \(hackerStory.Score)"
     
-    var hackerStory: HackerNewsStory! {
-        set {
-            _hackerStory = newValue
-        }
-        get {
-            return _hackerStory
-        }
+    if let url = hackerStory.Url {
+      print("calling url: \(url.absoluteString)")
+      storyWebView.loadRequest(URLRequest(url: url))
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        storyTitleLabel.text = hackerStory.Title
-        storyAuthorLabel.text = hackerStory.Author
-        storyScoreLabel.text = "score \(hackerStory.Score)"
-        
-        if let url = hackerStory.Url {
-            print("calling url: \(url.absoluteString)")
-            storyWebView.loadRequest(URLRequest(url: url))
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
 }
