@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class StoryViewController: UIViewController {
+class StoryViewController: UIViewController, UITabBarControllerDelegate {
   @IBOutlet weak var storyTitleLabel: UILabel!
   @IBOutlet weak var storyAuthorLabel: UILabel!
   @IBOutlet weak var storyScoreLabel: UILabel!
@@ -29,6 +29,8 @@ class StoryViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    tabBarController?.delegate = self
+    
     wkViewConfiguration = WKWebViewConfiguration()
     wkViewConfiguration.ignoresViewportScaleLimits = true
     wkViewConfiguration.allowsInlineMediaPlayback = true
@@ -47,6 +49,12 @@ class StoryViewController: UIViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  
+  func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    if let commentView = viewController as? CommentViewController {
+      commentView.testLabel.text = "This is from me!!!!"
+    }
   }
   
   private func setupURLView() {

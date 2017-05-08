@@ -15,12 +15,15 @@ class HNListTableViewController: UITableViewController, HackerNewsStoriesDelegat
   
   override func awakeFromNib() {
     super.awakeFromNib()
+
     hackerNews = HackerNews(withDelegate: self)
     hackerNews.fetchTopStories(limitNumberOfStories: 30)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationItem.title = "Top Stories"
+    
     tableView.estimatedRowHeight = 120
     tableView.rowHeight = UITableViewAutomaticDimension
   }
@@ -58,9 +61,10 @@ class HNListTableViewController: UITableViewController, HackerNewsStoriesDelegat
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let storyView = segue.destination as? StoryViewController, segue.identifier == "storySegue" {
-      if let index = tableView.indexPathForSelectedRow?.row, let story = hackerNewsStories?[index] {
-        storyView.hackerStory = story
+    if let tabBarView = segue.destination as? UITabBarController {
+      if let storyView = tabBarView.viewControllers?[0] as? StoryViewController { //need a better way to reference the view
+        let hackerStory = hackerNewsStories?[(tableView.indexPathForSelectedRow?.row)!]
+        storyView.hackerStory = hackerStory
       }
     }
   }

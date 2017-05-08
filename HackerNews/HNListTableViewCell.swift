@@ -33,7 +33,7 @@ class HNListTableViewCell: UITableViewCell {
   private func updateCellLabels() {
     storyTitleLabel.text = story.Title
     storyAuthorLabel.text = story.Author
-    storyDateLabel.text = story.Time?.description
+    storyDateLabel.text = story.formatedStoryDate()
     storyCountLabel.text = "score \(story.Score)"
     storyCommentCountLabel.text = "\(story.CommentCount)" //umm
   }
