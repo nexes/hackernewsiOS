@@ -50,7 +50,6 @@ class StoryViewController: UIViewController {
   }
   
   private func setupURLView() {
-    print("setupURLView()")
     let webView = WKWebView(frame: view.frame, configuration: wkViewConfiguration)
     webView.load(URLRequest(url: hackerStory.Url!))
     
@@ -58,7 +57,6 @@ class StoryViewController: UIViewController {
   }
   
   private func setupTextView() {
-    print("setupTextView(()")
     let textView = UITextView(frame: displayStoryView.frame)
     textView.text = hackerStory.Text
     

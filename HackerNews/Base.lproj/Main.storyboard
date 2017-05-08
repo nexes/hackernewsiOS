@@ -75,7 +75,6 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Eq7-cW-r4c" secondAttribute="bottom" constant="18" id="301-xQ-iZ9"/>
                                         <constraint firstItem="y3u-hS-V03" firstAttribute="leading" secondItem="4xA-zC-S6U" secondAttribute="leadingMargin" id="9kT-iy-HlG"/>
                                         <constraint firstItem="Eq7-cW-r4c" firstAttribute="leading" secondItem="y3u-hS-V03" secondAttribute="trailing" constant="30" id="JH9-9e-Er5"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="y3u-hS-V03" secondAttribute="bottom" id="RQL-Uo-Rbi"/>
@@ -94,7 +93,7 @@
                                     <outlet property="storyCountLabel" destination="a53-qM-fTg" id="bm9-02-iId"/>
                                     <outlet property="storyDateLabel" destination="EyM-cZ-9YE" id="aUT-AC-f41"/>
                                     <outlet property="storyTitleLabel" destination="O36-US-5lX" id="RrY-c0-dzc"/>
-                                    <segue destination="hYG-Xb-Lts" kind="show" identifier="storySegue" id="d2v-hJ-n5k"/>
+                                    <segue destination="hYG-Xb-Lts" kind="show" identifier="storySegue" id="qIg-xT-AMk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -156,35 +155,36 @@
                                     <constraint firstAttribute="height" constant="3" id="fFf-2e-hyw"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEe-Ap-17Z">
-                                <rect key="frame" x="16" y="141" width="343" height="526"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ttj-cp-Chg">
+                                <rect key="frame" x="0.0" y="147" width="375" height="520"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Ttj-cp-Chg" secondAttribute="bottom" id="47o-zc-2dz"/>
                             <constraint firstItem="kgl-v0-sbA" firstAttribute="leading" secondItem="HyD-qw-tzw" secondAttribute="leadingMargin" id="7WU-g1-PY6"/>
-                            <constraint firstItem="DEe-Ap-17Z" firstAttribute="top" secondItem="kgl-v0-sbA" secondAttribute="bottom" constant="1" id="Dkg-jI-9sC"/>
+                            <constraint firstAttribute="trailing" secondItem="Ttj-cp-Chg" secondAttribute="trailing" id="BaE-w6-H4r"/>
                             <constraint firstItem="ad5-Yb-7n9" firstAttribute="top" secondItem="l99-8a-uVF" secondAttribute="bottom" constant="8" id="FDZ-im-gFX"/>
+                            <constraint firstItem="Ttj-cp-Chg" firstAttribute="leading" secondItem="HyD-qw-tzw" secondAttribute="leading" id="IAf-mP-1YH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ad5-Yb-7n9" secondAttribute="trailing" id="IHP-JR-W3u"/>
-                            <constraint firstItem="0Bk-MB-dnE" firstAttribute="top" secondItem="DEe-Ap-17Z" secondAttribute="bottom" id="PAt-7v-Wcb"/>
+                            <constraint firstItem="Ttj-cp-Chg" firstAttribute="top" secondItem="kgl-v0-sbA" secondAttribute="bottom" constant="6" id="bHo-Cz-7Ck"/>
                             <constraint firstItem="kgl-v0-sbA" firstAttribute="top" secondItem="ad5-Yb-7n9" secondAttribute="bottom" constant="4" id="dhN-Ne-xES"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DEe-Ap-17Z" secondAttribute="trailing" id="hS8-LJ-dXS"/>
                             <constraint firstItem="ad5-Yb-7n9" firstAttribute="leading" secondItem="HyD-qw-tzw" secondAttribute="leadingMargin" id="lqA-SC-ehu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kgl-v0-sbA" secondAttribute="trailing" id="udA-rN-Z5d"/>
-                            <constraint firstItem="DEe-Ap-17Z" firstAttribute="leading" secondItem="HyD-qw-tzw" secondAttribute="leadingMargin" id="xtW-yt-ZsT"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" systemItem="recents" id="rx8-LK-Gjr"/>
                     <connections>
+                        <outlet property="displayStoryView" destination="Ttj-cp-Chg" id="4vU-Pq-jxZ"/>
                         <outlet property="storyAuthorLabel" destination="02Z-vW-Kb6" id="RQL-h2-kEN"/>
                         <outlet property="storyScoreLabel" destination="UJo-I4-v7u" id="x3d-Ns-OPd"/>
                         <outlet property="storyTitleLabel" destination="Bhf-Rm-G3l" id="6J9-SI-dar"/>
-                        <outlet property="storyWebView" destination="DEe-Ap-17Z" id="6ml-oG-I5N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb1-d0-jZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="872.79999999999995" y="-619.34032983508246"/>
+            <point key="canvasLocation" x="761" y="-619"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bCT-sr-Uxc">

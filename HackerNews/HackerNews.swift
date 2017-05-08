@@ -78,12 +78,10 @@ public struct HackerNewsStory {
         type = storyObj["type"] as? String
         commentIDs = storyObj["kids"] as? [Int]
         
-        //some post wont link to an artical, no URL
         if let url = storyObj["url"] as? String {
-          self.url = URL(string: url) //umm check if https exists first
+          self.url = URL(string: url)
         }
         
-        //some post will have text (artical) insead of an url
         if let text = storyObj["text"] as? String {
           self.text = text
         }
@@ -109,7 +107,9 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   private var sessionTasks: [Int: String]
   private var session: URLSession?
   private var stories: [HackerNewsStory]?
+  
   public var delegate: HackerNewsStoriesDelegate?
+  
   
   init(withDelegate delegate: HackerNewsStoriesDelegate? = nil) {
     if delegate != nil {
@@ -121,11 +121,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     stories = [HackerNewsStory]()
     super.init()
     
-    let sessionConfig = URLSessionConfiguration.default
-    sessionConfig.allowsCellularAccess = true
-    sessionConfig.urlCache = nil
-    
-    session = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
+    session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
   }
   
   func fetchTopStories(limitNumberOfStories limit: Int) {
@@ -140,9 +136,9 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   }
   
   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    //our delegate will probably update UI, so call it on the main thread
     if let taskType = sessionTasks.removeValue(forKey: task.taskIdentifier) {
       if taskType == "single story", let newStory = stories?.last {
-        //our delegate will probably update UI, so call it on the main thread
         DispatchQueue.main.async { [weak self] in
           self?.delegate?.hackerNews(singleStoryCompleted: newStory)
         }
@@ -151,7 +147,6 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     
     if sessionTasks.isEmpty {
       if (stories != nil) {
-        //our delegate will probably update UI, so call it on the main thread
         DispatchQueue.main.async { [weak self] in
           self?.delegate?.hackerNews(allStoriesCompleted: (self?.stories)!)
         }
@@ -161,12 +156,15 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   }
   
   func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    //top storise returns an array or IDs (Ints) not a json formated story
     if sessionTasks[dataTask.taskIdentifier] == "top stories" {
       if var dataString = String(bytes: data, encoding: .utf8) {
+        
         //remove "]" and "[" if present
         if let openBraceChar = dataString.characters.index(of: "[") {
           dataString.remove(at: openBraceChar)
         }
+        
         if let closeBraceChar = dataString.characters.index(of: "]") {
           dataString.remove(at: closeBraceChar)
         }

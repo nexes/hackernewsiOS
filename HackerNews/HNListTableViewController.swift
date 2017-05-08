@@ -16,7 +16,7 @@ class HNListTableViewController: UITableViewController, HackerNewsStoriesDelegat
   override func awakeFromNib() {
     super.awakeFromNib()
     hackerNews = HackerNews(withDelegate: self)
-    hackerNews.fetchTopStories(limitNumberOfStories: 20)
+    hackerNews.fetchTopStories(limitNumberOfStories: 30)
   }
   
   override func viewDidLoad() {

@@ -15,6 +15,7 @@ class HNListTableViewCell: UITableViewCell {
   @IBOutlet weak var storyCountLabel: UILabel!
   @IBOutlet weak var storyCommentCountLabel: UILabel!
   
+  
   var story: HackerNewsStory! {
     didSet{
       updateCellLabels()
