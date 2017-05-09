@@ -20,8 +20,8 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   private var fetchStoryLimit: Int
   private var storyIDNumbers: [Int]
   private var sessionTasks: [Int: String]
-  private var session: URLSession?
   private var stories: [HackerNewsStory]?
+  private var session: URLSession?
   
   public var delegate: HackerNewsStoriesDelegate?
   

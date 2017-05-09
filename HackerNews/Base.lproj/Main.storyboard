@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Kh-PI-YkB" id="4xA-zC-S6U">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="115"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="114.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="y3u-hS-V03">
@@ -129,7 +129,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Comments" image="comment-tabBarIcon" id="gU3-zh-t4f"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Comments" image="comment-tabBarIcon" id="gU3-zh-t4f"/>
                     <connections>
                         <outlet property="testLabel" destination="RZy-JI-7tr" id="a1X-io-y7E"/>
                     </connections>
@@ -229,7 +229,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="vl9-E7-x8m"/>
+                    <tabBarItem key="tabBarItem" tag="2" systemItem="favorites" id="vl9-E7-x8m"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bub-1H-rRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

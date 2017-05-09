@@ -80,13 +80,13 @@ struct HackerNewsStory {
     }
   }
   
-//  func comments() -> HackerStoryComments? {
-//    if let comments = kids {
-//      return HackerStoryComments(withCommentIDs: comments)
-//    }
-//    
-//    return nil
-//  }
+  func comments() -> HackerStoryComments? {
+    if let comments = kids {
+      return HackerStoryComments(withCommentIDs: comments)
+    }
+    
+    return nil
+  }
   
   private mutating func convertStringToJSON(_ jsonString: String) {
     do {

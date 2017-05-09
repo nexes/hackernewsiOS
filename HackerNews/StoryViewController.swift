@@ -17,15 +17,18 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
   
   private var wkViewConfiguration: WKWebViewConfiguration!
   private var _hackerStory: HackerNewsStory!
+  private var _hackerStoryComments: HackerStoryComments!
   
   var hackerStory: HackerNewsStory! {
     set {
       _hackerStory = newValue
+      _hackerStoryComments = _hackerStory.comments()
     }
     get {
       return _hackerStory
     }
   }
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,8 +55,20 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
   }
   
   func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-    if let commentView = viewController as? CommentViewController {
-      commentView.testLabel.text = "This is from me!!!!"
+    switch tabBarController.selectedIndex {
+      case 0:
+        break
+      
+      case 1:
+        if let commentView = viewController as? CommentViewController {
+          commentView.storyComments = _hackerStoryComments
+        }
+      
+      case 2:
+        break
+        
+      default:
+        break
     }
   }
   
