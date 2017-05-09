@@ -60,7 +60,7 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
         break
       
       case 1:
-        if let commentView = viewController as? CommentViewController {
+        if let commentView = viewController as? CommentListViewController {
           commentView.storyComments = _hackerStoryComments
         }
       

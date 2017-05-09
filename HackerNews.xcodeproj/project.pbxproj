@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B01A80571EC1A9D00085E6EC /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01A80561EC1A9D00085E6EC /* CommentViewCell.swift */; };
 		B05E5EA91EC1011E00E50A5C /* HackerNewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E5EA81EC1011E00E50A5C /* HackerNewsStory.swift */; };
 		B05E5EAB1EC1133C00E50A5C /* HackerStoryComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E5EAA1EC1133C00E50A5C /* HackerStoryComment.swift */; };
 		B07AABD31EBA9E9D00643696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABD21EBA9E9D00643696 /* AppDelegate.swift */; };
@@ -16,11 +17,12 @@
 		B07AABE61EBA9F3C00643696 /* HNListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABE51EBA9F3C00643696 /* HNListTableViewController.swift */; };
 		B07AABE81EBAA25200643696 /* HNListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABE71EBAA25200643696 /* HNListTableViewCell.swift */; };
 		B07AABEC1EBAAF9E00643696 /* HackerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABEB1EBAAF9E00643696 /* HackerNews.swift */; };
-		B0D029CA1EC07B4500737505 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D029C91EC07B4500737505 /* CommentViewController.swift */; };
+		B0D029CA1EC07B4500737505 /* CommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D029C91EC07B4500737505 /* CommentListViewController.swift */; };
 		B0E7FE9D1EBBF57A004F44B3 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E7FE9C1EBBF57A004F44B3 /* StoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B01A80561EC1A9D00085E6EC /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		B05E5EA81EC1011E00E50A5C /* HackerNewsStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerNewsStory.swift; sourceTree = "<group>"; };
 		B05E5EAA1EC1133C00E50A5C /* HackerStoryComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerStoryComment.swift; sourceTree = "<group>"; };
 		B07AABCF1EBA9E9D00643696 /* HackerNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,7 +34,7 @@
 		B07AABE51EBA9F3C00643696 /* HNListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HNListTableViewController.swift; sourceTree = "<group>"; };
 		B07AABE71EBAA25200643696 /* HNListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HNListTableViewCell.swift; sourceTree = "<group>"; };
 		B07AABEB1EBAAF9E00643696 /* HackerNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerNews.swift; sourceTree = "<group>"; };
-		B0D029C91EC07B4500737505 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		B0D029C91EC07B4500737505 /* CommentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
 		B0E7FE9C1EBBF57A004F44B3 /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +92,8 @@
 			children = (
 				B07AABE71EBAA25200643696 /* HNListTableViewCell.swift */,
 				B07AABE51EBA9F3C00643696 /* HNListTableViewController.swift */,
-				B0D029C91EC07B4500737505 /* CommentViewController.swift */,
+				B0D029C91EC07B4500737505 /* CommentListViewController.swift */,
+				B01A80561EC1A9D00085E6EC /* CommentViewCell.swift */,
 				B0E7FE9C1EBBF57A004F44B3 /* StoryViewController.swift */,
 			);
 			name = Controllers;
@@ -181,11 +184,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B05E5EAB1EC1133C00E50A5C /* HackerStoryComment.swift in Sources */,
-				B0D029CA1EC07B4500737505 /* CommentViewController.swift in Sources */,
+				B0D029CA1EC07B4500737505 /* CommentListViewController.swift in Sources */,
 				B0E7FE9D1EBBF57A004F44B3 /* StoryViewController.swift in Sources */,
 				B07AABE81EBAA25200643696 /* HNListTableViewCell.swift in Sources */,
 				B07AABD31EBA9E9D00643696 /* AppDelegate.swift in Sources */,
 				B07AABEC1EBAAF9E00643696 /* HackerNews.swift in Sources */,
+				B01A80571EC1A9D00085E6EC /* CommentViewCell.swift in Sources */,
 				B05E5EA91EC1011E00E50A5C /* HackerNewsStory.swift in Sources */,
 				B07AABE61EBA9F3C00643696 /* HNListTableViewController.swift in Sources */,
 			);

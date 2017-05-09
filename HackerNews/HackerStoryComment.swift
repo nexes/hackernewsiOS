@@ -14,22 +14,29 @@ class HackerStoryComments: NSObject, URLSessionDataDelegate {
   private var storyComments = [comment]()
   private var session: URLSession!
   
-  private struct comment {
+  struct comment {
     var author: String
     var parentid: Int
     var commentText: String
     var time: Int
   }
   
+  var commentCount: Int {
+    return storyComments.count
+  }
+  
   
   init(withCommentIDs ids: [Int]) {
     super.init()
-    
     session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
     
     for i in 0..<ids.count {
       fetchComment(byID: ids[i])
     }
+  }
+  
+  subscript(index: Int) -> comment {
+    return storyComments[index]
   }
   
   private func fetchComment(byID id: Int) {
