@@ -11,14 +11,16 @@ import Foundation
 
 class HackerStoryComments: NSObject, URLSessionDataDelegate {
   private let baseURL = "https://hacker-news.firebaseio.com/v0/item/"
+  private let dateFormatter = DateFormatter()
   private var storyComments = [comment]()
   private var session: URLSession!
+  
   
   struct comment {
     var author: String
     var parentid: Int
     var commentText: String
-    var time: Int
+    var time: String
   }
   
   var commentCount: Int {
@@ -28,7 +30,10 @@ class HackerStoryComments: NSObject, URLSessionDataDelegate {
   
   init(withCommentIDs ids: [Int]) {
     super.init()
+    
     session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+    dateFormatter.dateStyle = .none
+    dateFormatter.timeStyle = .short
     
     for i in 0..<ids.count {
       fetchComment(byID: ids[i])
@@ -58,10 +63,12 @@ class HackerStoryComments: NSObject, URLSessionDataDelegate {
     if let jsonString = String(bytes: data, encoding: .utf8) {
       do {
         if let respObj = try JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!) as? [String: Any] {
+          let time = respObj["time"] as? Int ?? 0
+          
           let cmt = comment(author: respObj["by"] as? String ?? "",
                             parentid: respObj["id"] as? Int ?? 0,
                             commentText: respObj["text"] as? String ?? "",
-                            time: respObj["time"] as? Int ?? 0)
+                            time: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(time))))
           
           storyComments.append(cmt)
         }

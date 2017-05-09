@@ -12,8 +12,12 @@ class CommentListViewController: UITableViewController {
   public var storyComments: HackerStoryComments?
   
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 250
   }
   
   override func didReceiveMemoryWarning() {
@@ -27,7 +31,8 @@ class CommentListViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let cellView = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentViewCell {
       if let comment = storyComments?[indexPath.row] {
-        cellView.setupComment(withAuthor: comment.author, withText: comment.commentText, withDate: "some time")
+        cellView.setupComment(withAuthor: comment.author, withText: comment.commentText, withDate: comment.time)
+        
         return cellView
       }
     }

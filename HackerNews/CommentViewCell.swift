@@ -9,7 +9,7 @@
 import UIKit
 
 class CommentViewCell: UITableViewCell {
-  @IBOutlet weak var commentTextLabel: UILabel!
+  @IBOutlet weak var commentTextLabel: UITextView!
   @IBOutlet weak var commentAuthorLabel: UILabel!
   @IBOutlet weak var commentDateLabel: UILabel!
 
@@ -23,8 +23,8 @@ class CommentViewCell: UITableViewCell {
   }
   
   func setupComment(withAuthor author: String, withText text: String, withDate date: String) {
-    commentAuthorLabel.text = author
     commentTextLabel.text = text
+    commentAuthorLabel.text = author
     commentDateLabel.text = date
   }
 }
