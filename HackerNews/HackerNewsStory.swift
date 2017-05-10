@@ -67,8 +67,10 @@ struct HackerNewsStory {
   }
   
   
-  init(withJsonString jsonString: String) {
-    convertStringToJSON(jsonString)
+  init?(withJsonString jsonString: String) {
+    if (!convertStringToJSON(jsonString)) {
+      return nil
+    }
   }
   
   func formatedStoryDate() -> String {
@@ -88,7 +90,7 @@ struct HackerNewsStory {
     return nil
   }
   
-  private mutating func convertStringToJSON(_ jsonString: String) {
+  private mutating func convertStringToJSON(_ jsonString: String) -> Bool {
     do {
       let jsonObj = try JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!)
       if let storyObj = jsonObj as? [String: Any] {
@@ -111,6 +113,10 @@ struct HackerNewsStory {
       
     } catch let err as NSError {
       print("convertStringToJSON error \(err.debugDescription)")
+      
+      return false
     }
+    
+    return true
   }
 }

@@ -17,10 +17,11 @@ protocol HackerNewsStoriesDelegate {
 
 class HackerNews: NSObject, URLSessionDataDelegate {
   private var baseURL = "https://hacker-news.firebaseio.com/v0/"
+  private var foundNewStory = false
   private var fetchStoryLimit: Int
   private var storyIDNumbers: [Int]
   private var sessionTasks: [Int: String]
-  private var stories: [HackerNewsStory]?
+  private var stories: [HackerNewsStory]
   private var session: URLSession?
   
   public var delegate: HackerNewsStoriesDelegate?
@@ -52,7 +53,8 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   
   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
     if let taskType = sessionTasks.removeValue(forKey: task.taskIdentifier) {
-      if taskType == "single story", let newStory = stories?.last {
+      if taskType == "single story" && foundNewStory, let newStory = stories.last {
+        foundNewStory = false
         DispatchQueue.main.async { [weak self] in
           self?.delegate?.hackerNews(singleStoryCompleted: newStory)
         }
@@ -60,11 +62,10 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     }
     
     if sessionTasks.isEmpty {
-      if (stories != nil) {
-        DispatchQueue.main.async { [weak self] in
-          self?.delegate?.hackerNews(allStoriesCompleted: (self?.stories)!)
-        }
+      DispatchQueue.main.async { [weak self] in
+        self?.delegate?.hackerNews(allStoriesCompleted: (self?.stories)!)
       }
+      
       session.finishTasksAndInvalidate()
     }
   }
@@ -94,8 +95,19 @@ class HackerNews: NSObject, URLSessionDataDelegate {
       }
       
     } else if sessionTasks[dataTask.taskIdentifier] == "single story" {
-      if let respString = String(bytes: data, encoding: .utf8) {
-        stories?.append(HackerNewsStory(withJsonString: respString))
+      if let respString = String(bytes: data, encoding: .utf8),
+         let newStory = HackerNewsStory(withJsonString: respString) {
+      
+        //check for duplicate stories: there is a better way to do this
+        for story in stories {
+          if story.Title == newStory.Title {
+            print("Found a dupicate story") //stop our delegate
+            return
+          }
+        }
+        
+        foundNewStory = true
+        stories.append(newStory)
       }
     }
   }
