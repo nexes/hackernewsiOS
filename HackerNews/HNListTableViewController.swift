@@ -24,8 +24,8 @@ class HNListTableViewController: UITableViewController, HackerNewsStoriesDelegat
     super.viewDidLoad()
     navigationItem.title = "Top Stories"
     
-    tableView.estimatedRowHeight = 120
     tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 120
   }
   
   override func didReceiveMemoryWarning() {
