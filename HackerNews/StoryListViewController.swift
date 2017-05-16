@@ -1,5 +1,5 @@
 //
-//  HNListTableViewController.swift
+//  StoryListViewController.swift
 //  HackerNews
 //
 //  Created by Joe Berria on 5/3/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HNListTableViewController: UITableViewController, HackerNewsStoriesDelegate {
+class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate {
   private var hackerNews: HackerNews!
   private var hackerNewsStories: [HackerNewsStory]?
   
@@ -45,7 +45,7 @@ class HNListTableViewController: UITableViewController, HackerNewsStoriesDelegat
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if let hackerNewsCell = tableView.dequeueReusableCell(withIdentifier: "HNcell", for: indexPath) as? HNListTableViewCell {
+    if let hackerNewsCell = tableView.dequeueReusableCell(withIdentifier: "HNcell", for: indexPath) as? StoryListViewCell {
       if let story = hackerNewsStories?[indexPath.row] {
         hackerNewsCell.story = story
         

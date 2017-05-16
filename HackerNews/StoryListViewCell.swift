@@ -1,5 +1,5 @@
 //
-//  HNListTableViewCell.swift
+//  StoryListViewCell.swift
 //  HackerNews
 //
 //  Created by Joe Berria on 5/3/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HNListTableViewCell: UITableViewCell {
+class StoryListViewCell: UITableViewCell {
   @IBOutlet weak var storyTitleLabel: UILabel!
   @IBOutlet weak var storyAuthorLabel: UILabel!
   @IBOutlet weak var storyDateLabel: UILabel!
