@@ -10,6 +10,8 @@
 		B01A80571EC1A9D00085E6EC /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01A80561EC1A9D00085E6EC /* CommentViewCell.swift */; };
 		B0262B201ECBCEBF0046E2F7 /* NewStoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0262B1F1ECBCEBF0046E2F7 /* NewStoryListViewController.swift */; };
 		B0262B221ECBD2580046E2F7 /* NewStoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0262B211ECBD2580046E2F7 /* NewStoryViewCell.swift */; };
+		B0262B241ECC05010046E2F7 /* BestStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0262B231ECC05010046E2F7 /* BestStoryViewController.swift */; };
+		B0262B261ECC09800046E2F7 /* BestStoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0262B251ECC09800046E2F7 /* BestStoryViewCell.swift */; };
 		B05E5EA91EC1011E00E50A5C /* HackerNewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E5EA81EC1011E00E50A5C /* HackerNewsStory.swift */; };
 		B05E5EAB1EC1133C00E50A5C /* HackerStoryComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E5EAA1EC1133C00E50A5C /* HackerStoryComment.swift */; };
 		B07AABD31EBA9E9D00643696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABD21EBA9E9D00643696 /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 		B01A80561EC1A9D00085E6EC /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		B0262B1F1ECBCEBF0046E2F7 /* NewStoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStoryListViewController.swift; sourceTree = "<group>"; };
 		B0262B211ECBD2580046E2F7 /* NewStoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStoryViewCell.swift; sourceTree = "<group>"; };
+		B0262B231ECC05010046E2F7 /* BestStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestStoryViewController.swift; sourceTree = "<group>"; };
+		B0262B251ECC09800046E2F7 /* BestStoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestStoryViewCell.swift; sourceTree = "<group>"; };
 		B05E5EA81EC1011E00E50A5C /* HackerNewsStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerNewsStory.swift; sourceTree = "<group>"; };
 		B05E5EAA1EC1133C00E50A5C /* HackerStoryComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerStoryComment.swift; sourceTree = "<group>"; };
 		B07AABCF1EBA9E9D00643696 /* HackerNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,8 +100,10 @@
 			children = (
 				B07AABE71EBAA25200643696 /* StoryListViewCell.swift */,
 				B0262B211ECBD2580046E2F7 /* NewStoryViewCell.swift */,
+				B0262B251ECC09800046E2F7 /* BestStoryViewCell.swift */,
 				B07AABE51EBA9F3C00643696 /* StoryListViewController.swift */,
 				B0262B1F1ECBCEBF0046E2F7 /* NewStoryListViewController.swift */,
+				B0262B231ECC05010046E2F7 /* BestStoryViewController.swift */,
 				B0D029C91EC07B4500737505 /* CommentListViewController.swift */,
 				B01A80561EC1A9D00085E6EC /* CommentViewCell.swift */,
 				B0E7FE9C1EBBF57A004F44B3 /* StoryViewController.swift */,
@@ -191,6 +197,8 @@
 			files = (
 				B05E5EAB1EC1133C00E50A5C /* HackerStoryComment.swift in Sources */,
 				B0D029CA1EC07B4500737505 /* CommentListViewController.swift in Sources */,
+				B0262B261ECC09800046E2F7 /* BestStoryViewCell.swift in Sources */,
+				B0262B241ECC05010046E2F7 /* BestStoryViewController.swift in Sources */,
 				B0E7FE9D1EBBF57A004F44B3 /* StoryViewController.swift in Sources */,
 				B07AABE81EBAA25200643696 /* StoryListViewCell.swift in Sources */,
 				B0262B221ECBD2580046E2F7 /* NewStoryViewCell.swift in Sources */,
