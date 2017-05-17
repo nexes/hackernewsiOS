@@ -63,4 +63,14 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     
     return UITableViewCell() // shouldn't get here
   }
+  
+  // MARK: - Segue navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let tabView = segue.destination as? UITabBarController
+    
+    if let storyView = tabView?.viewControllers?[0] as? StoryViewController {
+      let story = bestStories[(tableView.indexPathForSelectedRow?.row)!]
+      storyView.hackerStory = story
+    }
+  }
 }

@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mer-Tp-KYF" id="tUE-9P-whx">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="111.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EY-UD-SUF">
@@ -89,6 +89,7 @@
                                     <outlet property="storyDateLabel" destination="Jqg-oC-drw" id="ubU-mq-u2s"/>
                                     <outlet property="storyScoreLabel" destination="alf-nI-8R8" id="uNe-PQ-unm"/>
                                     <outlet property="storyTitleLabel" destination="gwB-a4-gUF" id="h54-0O-9tB"/>
+                                    <segue destination="xMp-9B-tRr" kind="show" id="Evh-2q-SOv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -101,7 +102,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74d-cu-Yfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-282.39999999999998" y="-1295.8020989505249"/>
+            <point key="canvasLocation" x="-282" y="-1377"/>
         </scene>
         <!--Top-->
         <scene sceneID="eIG-Oo-pAK">
@@ -204,7 +205,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fK-86-Iif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-282.39999999999998" y="-619.34032983508246"/>
+            <point key="canvasLocation" x="-282" y="-619"/>
         </scene>
         <!--New-->
         <scene sceneID="Sh0-qt-o5m">
@@ -286,6 +287,7 @@
                                     <outlet property="storyDateLabel" destination="7u1-z5-olL" id="ccJ-AN-1Vn"/>
                                     <outlet property="storyScoreLabel" destination="gY0-8Z-dwP" id="cJV-F9-MlU"/>
                                     <outlet property="storyTitleLabel" destination="Fpr-SP-01q" id="1E0-gj-iKa"/>
+                                    <segue destination="xMp-9B-tRr" kind="show" id="UeJ-HG-Kwv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -298,7 +300,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sp-u7-mVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-282.39999999999998" y="106.59670164917542"/>
+            <point key="canvasLocation" x="-282" y="121"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GIJ-MQ-diS">
@@ -521,7 +523,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8e-Tw-ex8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="-619"/>
+            <point key="canvasLocation" x="553" y="-619"/>
         </scene>
     </scenes>
     <resources>
@@ -529,4 +531,7 @@
         <image name="bubble" width="155" height="128"/>
         <image name="comment-tabBarIcon" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UeJ-HG-Kwv"/>
+    </inferredMetricsTieBreakers>
 </document>

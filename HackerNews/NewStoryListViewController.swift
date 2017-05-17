@@ -69,8 +69,12 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
   
   // MARK: - Navigation
   
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    print("newStoryListView prepare for segue called")
+    let tabView = segue.destination as? UITabBarController
+    
+    if let storyView = tabView?.viewControllers?[0] as? StoryViewController {
+      let story = newStories[(tableView.indexPathForSelectedRow?.row)!]
+      storyView.hackerStory = story
+    }
   }
 }
