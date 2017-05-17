@@ -21,9 +21,20 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   private var fetchStoryLimit: Int
   private var storyIDNumbers: [Int]
   private var sessionTasks: [Int: String]
-  private var stories: [HackerNewsStory]
   private var session: URLSession?
   
+  lazy private var topStories: [HackerNewsStory] = {
+    return [HackerNewsStory]()
+  }()
+  
+  lazy private var bestStories: [HackerNewsStory] = {
+    return [HackerNewsStory]()
+  }()
+
+  lazy private var newStories: [HackerNewsStory] = {
+    return [HackerNewsStory]()
+  }()
+
   public var delegate: HackerNewsStoriesDelegate?
   
   
@@ -34,7 +45,6 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     fetchStoryLimit = 10
     storyIDNumbers = [Int]()
     sessionTasks = [Int: String]()
-    stories = [HackerNewsStory]()
     super.init()
     
     session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
@@ -42,7 +52,17 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   
   func fetchTopStories(limitNumberOfStories limit: Int) {
     fetchStoryLimit = limit
-    startNewSessionTask(withURLString: baseURL + "topstories.json", taskName: "top stories")
+    startNewSessionTask(withURLString: baseURL + "topstories.json", taskName: "story IDs")
+  }
+  
+  func fetchNewStories(limitNumberOfStories limit: Int) {
+    fetchStoryLimit = limit
+    startNewSessionTask(withURLString: baseURL + "newstories.json", taskName: "story IDs")
+  }
+  
+  func fetchBestStories(limitNumberOfStories limit: Int) {
+    fetchStoryLimit = limit
+    startNewSessionTask(withURLString: baseURL + "beststories.json", taskName: "story IDs")
   }
   
   func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
@@ -53,7 +73,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   
   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
     if let taskType = sessionTasks.removeValue(forKey: task.taskIdentifier) {
-      if taskType == "single story" && foundNewStory, let newStory = stories.last {
+      if taskType == "single story" && foundNewStory, let newStory = topStories.last {
         foundNewStory = false
         DispatchQueue.main.async { [weak self] in
           self?.delegate?.hackerNews(singleStoryCompleted: newStory)
@@ -63,7 +83,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     
     if sessionTasks.isEmpty {
       DispatchQueue.main.async { [weak self] in
-        self?.delegate?.hackerNews(allStoriesCompleted: (self?.stories)!)
+        self?.delegate?.hackerNews(allStoriesCompleted: (self?.topStories)!)
       }
       
       session.finishTasksAndInvalidate()
@@ -72,7 +92,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   
   func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
     //top storise returns an array or IDs (Ints) not a json formated story
-    if sessionTasks[dataTask.taskIdentifier] == "top stories" {
+    if sessionTasks[dataTask.taskIdentifier] == "story IDs" {
       if var dataString = String(bytes: data, encoding: .utf8) {
         
         //remove "]" and "[" if present
@@ -99,7 +119,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
          let newStory = HackerNewsStory(withJsonString: respString) {
       
         //check for duplicate stories: there is a better way to do this
-        for story in stories {
+        for story in topStories {
           if story.Title == newStory.Title {
             print("Found a dupicate story") //stop our delegate
             return
@@ -107,7 +127,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
         }
         
         foundNewStory = true
-        stories.append(newStory)
+        topStories.append(newStory)
       }
     }
   }

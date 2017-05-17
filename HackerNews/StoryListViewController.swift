@@ -22,15 +22,23 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.title = "Top Stories"
-    
+
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 120
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    tabBarController?.title = "Top"
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
+  
+  // MARK: - Hacker News delegate callbacks
   
   func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
     //        self.tableView.reloadData()
@@ -43,6 +51,18 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     hackerNewsStories?.append(story)
     tableView.insertRows(at: [IndexPath(row: hackerNewsStories!.count - 1, section: 0)], with: UITableViewRowAnimation.right)
   }
+  
+  
+  // MARK: - TableView list refresh
+  
+  @IBAction func refreshStoryList(_ sender: UIRefreshControl) {
+    print("story refresh")
+    //hacker news api has a changed items end point.
+    refreshControl?.endRefreshing()
+  }
+  
+  
+  // MARK: - Table view data source
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let hackerNewsCell = tableView.dequeueReusableCell(withIdentifier: "HNcell", for: indexPath) as? StoryListViewCell {
@@ -59,6 +79,9 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return hackerNewsStories?.count ?? 0
   }
+  
+  
+  // MARK: - Segue preperation
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let tabBarView = segue.destination as? UITabBarController {
