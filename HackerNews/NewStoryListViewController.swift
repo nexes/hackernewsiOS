@@ -27,6 +27,9 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
     super.viewWillAppear(animated)
     
     tabBarController?.title = "New"
+    navigationController?.navigationBar.barTintColor = UIColor.green
+    navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
   }
   
   override func didReceiveMemoryWarning() {

@@ -23,7 +23,10 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    
     tabBarController?.title = "Best"
+    navigationController?.navigationBar.barTintColor = UIColor.cyan
+    navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
   }
   
   override func didReceiveMemoryWarning() {
