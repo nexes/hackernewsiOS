@@ -25,7 +25,7 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     super.viewWillAppear(animated)
     
     tabBarController?.title = "Best"
-    navigationController?.navigationBar.barTintColor = UIColor.cyan
+    navigationController?.navigationBar.barTintColor = UIColor(red: 104/255, green: 216/255, blue: 141/255, alpha: 1)
     navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
   }
   

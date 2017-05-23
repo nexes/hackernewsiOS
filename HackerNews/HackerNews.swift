@@ -106,7 +106,9 @@ class HackerNews: NSObject, URLSessionDataDelegate {
         
         let stringArray = dataString.components(separatedBy: ",")
         for item in stringArray {
-          storyIDNumbers.append(Int(item)!)
+          if let itemID = Int(item) {
+            storyIDNumbers.append(itemID)
+          }
         }
         
         if storyIDNumbers.isEmpty == false {

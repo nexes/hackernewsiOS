@@ -31,7 +31,7 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     super.viewWillAppear(animated)
     
     tabBarController?.title = "Top"
-    navigationController?.navigationBar.barTintColor = UIColor.orange
+    navigationController?.navigationBar.barTintColor = UIColor(red: 229/255, green: 165/255, blue: 36/255, alpha: 1)
     navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
   }
   
