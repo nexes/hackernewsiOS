@@ -17,6 +17,9 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 100
+
     hackerNews = HackerNews(withDelegate: self)
     hackerNews.fetchBestStories(limitNumberOfStories: 20)
   }

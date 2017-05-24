@@ -33,6 +33,7 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     tabBarController?.delegate = self
+    navigationController?.navigationBar.tintColor = UIColor.white
     
     wkViewConfiguration = WKWebViewConfiguration()
     wkViewConfiguration.ignoresViewportScaleLimits = true
@@ -41,6 +42,7 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
     storyTitleLabel.text = hackerStory.Title
     storyAuthorLabel.text = hackerStory.Author
     storyScoreLabel.text = "score \(hackerStory.Score)"
+    
     
     if (hackerStory.Url != nil) {
       setupURLView()
@@ -55,6 +57,8 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
   }
   
   func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    print("tabBarController selected \(tabBarController.selectedIndex)")
+    
     switch tabBarController.selectedIndex {
       case 0:
         break

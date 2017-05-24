@@ -24,7 +24,7 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     super.viewDidLoad()
 
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 120
+    tableView.estimatedRowHeight = 100
   }
   
   override func viewWillAppear(_ animated: Bool) {

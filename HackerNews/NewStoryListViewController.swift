@@ -16,11 +16,12 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
   
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 100
+
     hackerNews = HackerNews(withDelegate: self)
     hackerNews?.fetchNewStories(limitNumberOfStories: 20)
-    
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 120
   }
   
   override func viewWillAppear(_ animated: Bool) {
