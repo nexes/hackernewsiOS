@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mer-Tp-KYF" id="tUE-9P-whx">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="111.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EY-UD-SUF">
@@ -98,7 +98,7 @@
                             <outlet property="delegate" destination="BKA-d6-wfD" id="zOC-X8-o6q"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Best" id="3tc-CQ-kOf"/>
+                    <tabBarItem key="tabBarItem" title="Best" image="bestStory" id="3tc-CQ-kOf"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74d-cu-Yfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,7 +117,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Kh-PI-YkB" id="4xA-zC-S6U">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaS-6o-iJd">
@@ -190,7 +190,7 @@
                             <outlet property="delegate" destination="I2R-vf-No6" id="CEq-7y-OHJ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Top" id="eoc-9e-RiB"/>
+                    <tabBarItem key="tabBarItem" title="Top" image="topStory" id="eoc-9e-RiB"/>
                     <navigationItem key="navigationItem" id="vaE-3E-nFw"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="zq4-BB-naQ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -217,7 +217,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yLt-Jz-1bd" id="Skf-hC-iRU">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpr-SP-01q">
@@ -291,7 +291,7 @@
                             <outlet property="delegate" destination="kJK-j8-zW8" id="tvJ-TE-AWE"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="New" id="elT-tg-mm6"/>
+                    <tabBarItem key="tabBarItem" title="New" image="newStory" id="elT-tg-mm6"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sp-u7-mVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -330,7 +330,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="251"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UcN-Oy-Zoi" id="i8n-dm-gGG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h8H-JB-N43">
@@ -522,9 +522,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bestStory" width="25" height="25"/>
         <image name="book-tabBarIcon" width="25" height="25"/>
         <image name="bubble" width="155" height="128"/>
         <image name="comment-tabBarIcon" width="25" height="25"/>
+        <image name="newStory" width="25" height="25"/>
+        <image name="topStory" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UeJ-HG-Kwv"/>
