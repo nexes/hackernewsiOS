@@ -9,22 +9,22 @@
 import UIKit
 
 class CommentViewCell: UITableViewCell {
-  @IBOutlet weak var commentTextLabel: UITextView!
-  @IBOutlet weak var commentAuthorLabel: UILabel!
-  @IBOutlet weak var commentDateLabel: UILabel!
-
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-  }
-  
-  func setupComment(withAuthor author: String, withText text: String, withDate date: String) {
-    commentTextLabel.text = text
-    commentAuthorLabel.text = author
-    commentDateLabel.text = date
-  }
+    @IBOutlet weak var commentTextLabel: UITextView!
+    @IBOutlet weak var commentAuthorLabel: UILabel!
+    @IBOutlet weak var commentDateLabel: UILabel!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    func setupComment(withAuthor author: String, withText text: String, withDate date: String) {
+        commentTextLabel.text = text
+        commentAuthorLabel.text = author
+        commentDateLabel.text = date
+    }
 }

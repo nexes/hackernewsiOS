@@ -9,34 +9,34 @@
 import UIKit
 
 class CommentListViewController: UITableViewController {
-  public var storyComments: HackerStoryComments?
-  
-  
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    public var storyComments: HackerStoryComments?
     
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 250
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
-  
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return storyComments?.commentCount ?? 0
-  }
-  
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if let cellView = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentViewCell {
-      if let comment = storyComments?[indexPath.row] {
-        cellView.setupComment(withAuthor: comment.author, withText: comment.commentText, withDate: comment.time)
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        return cellView
-      }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 250
     }
     
-    return UITableViewCell() // shouldn't get here
-  }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return storyComments?.commentCount ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cellView = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentViewCell {
+            if let comment = storyComments?[indexPath.row] {
+                cellView.setupComment(withAuthor: comment.author, withText: comment.commentText, withDate: comment.time)
+                
+                return cellView
+            }
+        }
+        
+        return UITableViewCell() // shouldn't get here
+    }
 }
