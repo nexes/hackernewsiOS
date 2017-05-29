@@ -51,6 +51,8 @@ class HackerStoryComments: NSObject, URLSessionDataDelegate {
     }
   }
 
+  //MARK: - URLSession delegate functions
+  
   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
     if error != nil {
       print("Story comment task completed with error: \(error.debugDescription)")

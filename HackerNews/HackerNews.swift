@@ -23,17 +23,10 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   private var sessionTasks: [Int: String]
   private var session: URLSession?
   
-  lazy private var topStories: [HackerNewsStory] = {
+  lazy private var storyList: [HackerNewsStory] = {
     return [HackerNewsStory]()
   }()
   
-  lazy private var bestStories: [HackerNewsStory] = {
-    return [HackerNewsStory]()
-  }()
-
-  lazy private var newStories: [HackerNewsStory] = {
-    return [HackerNewsStory]()
-  }()
 
   public var delegate: HackerNewsStoriesDelegate?
   
@@ -73,8 +66,9 @@ class HackerNews: NSObject, URLSessionDataDelegate {
   
   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
     if let taskType = sessionTasks.removeValue(forKey: task.taskIdentifier) {
-      if taskType == "single story" && foundNewStory, let newStory = topStories.last {
+      if taskType == "single story" && foundNewStory, let newStory = storyList.last {
         foundNewStory = false
+        
         DispatchQueue.main.async { [weak self] in
           self?.delegate?.hackerNews(singleStoryCompleted: newStory)
         }
@@ -83,7 +77,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     
     if sessionTasks.isEmpty {
       DispatchQueue.main.async { [weak self] in
-        self?.delegate?.hackerNews(allStoriesCompleted: (self?.topStories)!)
+        self?.delegate?.hackerNews(allStoriesCompleted: (self?.storyList)!)
       }
       
       session.finishTasksAndInvalidate()
@@ -121,7 +115,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
          let newStory = HackerNewsStory(withJsonString: respString) {
       
         //check for duplicate stories: there is a better way to do this
-        for story in topStories {
+        for story in storyList {
           if story.Title == newStory.Title {
             print("Found a dupicate story") //stop our delegate
             return
@@ -129,7 +123,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
         }
         
         foundNewStory = true
-        topStories.append(newStory)
+        storyList.append(newStory)
       }
     }
   }

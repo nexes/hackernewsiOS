@@ -21,7 +21,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
     tableView.estimatedRowHeight = 100
 
     hackerNews = HackerNews(withDelegate: self)
-    hackerNews?.fetchNewStories(limitNumberOfStories: 20)
+    hackerNews?.fetchNewStories(limitNumberOfStories: 30)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +60,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
   
   
   // MARK: - Hacker News delegates
+
   func hackerNews(singleStoryCompleted story: HackerNewsStory) {
     newStories.append(story)
     tableView.insertRows(at: [IndexPath(row: newStories.count - 1, section: 0)], with: .right)

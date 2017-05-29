@@ -21,7 +21,7 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     tableView.estimatedRowHeight = 100
 
     hackerNews = HackerNews(withDelegate: self)
-    hackerNews.fetchBestStories(limitNumberOfStories: 20)
+    hackerNews.fetchBestStories(limitNumberOfStories: 30)
   }
   
   override func viewWillAppear(_ animated: Bool) {
