@@ -12,6 +12,8 @@ import UIKit
 class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate {
     private var bestStories = [HackerNewsStory]()
     private var hackerNews: HackerNews!
+    private var storyDisplayCount = 30
+    private var storiesAreLoading = true
     
     
     override func viewDidLoad() {
@@ -21,7 +23,7 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
         tableView.estimatedRowHeight = 100
         
         hackerNews = HackerNews(withDelegate: self)
-        hackerNews.fetchBestStories(limitNumberOfStories: 30)
+        hackerNews.fetchBestStories(limitNumberOfStories: storyDisplayCount)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,14 +42,14 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     // MARK: - Hacker News story delegates
     
     func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
-        
+        storiesAreLoading = false
     }
     
     func hackerNews(singleStoryCompleted story: HackerNewsStory) {
         bestStories.append(story)
-        tableView.insertRows(at: [IndexPath(row: bestStories.count - 1, section: 0)], with: .right)
+        tableView.insertRows(at: [IndexPath(row: bestStories.count - 1, section: 0)], with: UITableViewRowAnimation.top)
     }
-    
+
     
     // MARK: - Table view data source
     
@@ -67,9 +69,20 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
             return bestCell
         }
         
-        return UITableViewCell() // shouldn't get here
+        //shouldn't get here
+        return UITableViewCell()
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rowCount = tableView.numberOfRows(inSection: 0)
+        
+        if storiesAreLoading == false && indexPath.row >= rowCount - 1 {
+            storiesAreLoading = true
+            hackerNews.showAdditionalStories(count: storyDisplayCount)
+        }
+    }
+    
+
     // MARK: - Segue navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tabView = segue.destination as? UITabBarController

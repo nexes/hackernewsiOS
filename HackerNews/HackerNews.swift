@@ -18,50 +18,67 @@ protocol HackerNewsStoriesDelegate {
 class HackerNews: NSObject, URLSessionDataDelegate {
     private var baseURL = "https://hacker-news.firebaseio.com/v0/"
     private var foundNewStory = false
-    private var fetchStoryLimit: Int
+    private var storyDisplayCount: Int
+    private var startStoryDisplay: Int
     private var storyIDNumbers: [Int]
     private var sessionTasks: [Int: String]
     private var session: URLSession?
+    private var sessionValid: Bool
     
     lazy private var storyList: [HackerNewsStory] = {
         return [HackerNewsStory]()
     }()
     
-    
     public var delegate: HackerNewsStoriesDelegate?
     
-    
+
     init(withDelegate delegate: HackerNewsStoriesDelegate? = nil) {
         if delegate != nil {
             self.delegate = delegate
         }
-        fetchStoryLimit = 10
+        
+        storyDisplayCount = 10
+        startStoryDisplay = 0
         storyIDNumbers = [Int]()
         sessionTasks = [Int: String]()
-        super.init()
+        sessionValid = true
         
+        super.init()
         session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
     }
     
     func fetchTopStories(limitNumberOfStories limit: Int) {
-        fetchStoryLimit = limit
+        storyDisplayCount = limit
         startNewSessionTask(withURLString: baseURL + "topstories.json", taskName: "story IDs")
     }
     
     func fetchNewStories(limitNumberOfStories limit: Int) {
-        fetchStoryLimit = limit
+        storyDisplayCount = limit
         startNewSessionTask(withURLString: baseURL + "newstories.json", taskName: "story IDs")
     }
     
     func fetchBestStories(limitNumberOfStories limit: Int) {
-        fetchStoryLimit = limit
+        storyDisplayCount = limit
         startNewSessionTask(withURLString: baseURL + "beststories.json", taskName: "story IDs")
+    }
+    
+    func showAdditionalStories(count: Int) {
+        startStoryDisplay += storyDisplayCount
+        
+        if startStoryDisplay + storyDisplayCount <= storyIDNumbers.count - 1 {
+            loadStoriesFromFromRange(from: startStoryDisplay, to: startStoryDisplay + storyDisplayCount)
+        
+        } else {
+            //finish this part
+        }
     }
     
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         if let err = error {
             print("didBecomeInvalidWithError with error \(err.localizedDescription)")
         }
+        
+        sessionValid = false
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -106,7 +123,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
                 }
                 
                 if storyIDNumbers.isEmpty == false {
-                    loadStoriesFromFromRange(from: 0, to: fetchStoryLimit)
+                    loadStoriesFromFromRange(from: 0, to: storyDisplayCount)
                 }
             }
             
@@ -133,6 +150,11 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     }
     
     private func startNewSessionTask(withURLString url: String, taskName: String) {
+        if sessionValid == false {
+            session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+            sessionValid = true
+        }
+        
         if let url = URL(string: url), let task = session?.dataTask(with: url) {
             addNewSessionTask(task.taskIdentifier, withName: taskName)
             task.resume()
@@ -140,7 +162,9 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     }
     
     private func loadStoriesFromFromRange(from start: Int, to end: Int) {
-        for i in start..<end {
+        let start = min(start, end)
+        
+        for i in start...end {
             let url = baseURL + "/item/\(storyIDNumbers[i]).json"
             startNewSessionTask(withURLString: url, taskName: "single story")
         }

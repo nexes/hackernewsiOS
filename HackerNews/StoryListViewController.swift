@@ -10,19 +10,17 @@ import UIKit
 
 class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate {
     private var hackerNews: HackerNews!
-    private var hackerNewsStories: [HackerNewsStory]?
+    private var hackerNewsStories = [HackerNewsStory]()
+    private var storyDisplayCount = 30
+    private var storiesAreLoading = true
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        hackerNews = HackerNews(withDelegate: self)
-        hackerNews.fetchTopStories(limitNumberOfStories: 30)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hackerNews = HackerNews(withDelegate: self)
+        hackerNews.fetchTopStories(limitNumberOfStories: storyDisplayCount)
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
     }
@@ -43,49 +41,47 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     // MARK: - Hacker News delegate callbacks
     
     func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
-        //        self.tableView.reloadData()
+        storiesAreLoading = false
     }
     
     func hackerNews(singleStoryCompleted story: HackerNewsStory) {
-        if hackerNewsStories == nil {
-            hackerNewsStories = [HackerNewsStory]()
-        }
-        hackerNewsStories?.append(story)
-        tableView.insertRows(at: [IndexPath(row: hackerNewsStories!.count - 1, section: 0)], with: UITableViewRowAnimation.right)
+        hackerNewsStories.append(story)
+        tableView.insertRows(at: [IndexPath(row: hackerNewsStories.count - 1, section: 0)], with: UITableViewRowAnimation.top)
     }
     
     
     // MARK: - TableView list refresh
     
     @IBAction func refreshStoryList(_ sender: UIRefreshControl) {
-        //hacker news api has a changed items end point.
-        refreshControl?.beginRefreshing()
-        refreshControl?.attributedTitle = NSAttributedString(string: "Checking New Stories")
-        refreshControl?.endRefreshing()
+//        refreshControl?.beginRefreshing()
     }
     
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let hackerNewsCell = tableView.dequeueReusableCell(withIdentifier: "HNcell", for: indexPath) as? StoryListViewCell {
-            if let story = hackerNewsStories?[indexPath.row] {
-                hackerNewsCell.story = story
-                
-                return hackerNewsCell
-            }
-        }
-        
-        return UITableViewCell() //shouldn't get here
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return hackerNewsStories.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hackerNewsStories?.count ?? 0
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let hackerNewsCell = tableView.dequeueReusableCell(withIdentifier: "HNcell", for: indexPath) as? StoryListViewCell {
+            let story = hackerNewsStories[indexPath.row]
+            hackerNewsCell.story = story
+            
+            return hackerNewsCell
+        }
+        
+        //shouldn't get here
+        return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // we can request more stories
-        print("scrolling at index \(indexPath.row)")
+        let rowCount = tableView.numberOfRows(inSection: 0)
+        
+        if storiesAreLoading == false && indexPath.row >= rowCount - 1 {
+            storiesAreLoading = true
+            hackerNews.showAdditionalStories(count: storyDisplayCount)
+        }
     }
     
     // MARK: - Segue preperation
@@ -93,7 +89,8 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let tabBarView = segue.destination as? UITabBarController {
             if let storyView = tabBarView.viewControllers?[0] as? StoryViewController { //need a better way to reference the view
-                let hackerStory = hackerNewsStories?[(tableView.indexPathForSelectedRow?.row)!]
+                let hackerStory = hackerNewsStories[(tableView.indexPathForSelectedRow?.row)!]
+                
                 storyView.hackerStory = hackerStory
             }
         }

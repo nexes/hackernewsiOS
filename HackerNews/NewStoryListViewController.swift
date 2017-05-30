@@ -12,6 +12,8 @@ import UIKit
 class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelegate {
     private var hackerNews: HackerNews?
     private var newStories = [HackerNewsStory]()
+    private var storyDisplayCount = 30
+    private var storiesAreLoading = true
     
     
     override func viewDidLoad() {
@@ -21,7 +23,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
         tableView.estimatedRowHeight = 100
         
         hackerNews = HackerNews(withDelegate: self)
-        hackerNews?.fetchNewStories(limitNumberOfStories: 30)
+        hackerNews?.fetchNewStories(limitNumberOfStories: storyDisplayCount)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,11 +39,19 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
     }
     
     
-    // MARK: - Table view data source
+    // MARK: - Hacker News delegates
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func hackerNews(singleStoryCompleted story: HackerNewsStory) {
+        newStories.append(story)
+        tableView.insertRows(at: [IndexPath(row: newStories.count - 1, section: 0)], with: UITableViewRowAnimation.top)
     }
+    
+    func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
+        storiesAreLoading = false
+    }
+    
+    
+    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newStories.count
@@ -55,21 +65,18 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
             return storyCell
         }
         
-        return UITableViewCell() //shouldn't get here
+        //shouldn't get here
+        return UITableViewCell()
     }
     
-    
-    // MARK: - Hacker News delegates
-    
-    func hackerNews(singleStoryCompleted story: HackerNewsStory) {
-        newStories.append(story)
-        tableView.insertRows(at: [IndexPath(row: newStories.count - 1, section: 0)], with: .right)
-    }
-    
-    func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rowCount = tableView.numberOfRows(inSection: 0)
         
+        if storiesAreLoading == false && indexPath.row >= rowCount - 1 {
+            storiesAreLoading = true
+            hackerNews?.showAdditionalStories(count: storyDisplayCount)
+        }
     }
-    
     
     // MARK: - Navigation
     
