@@ -71,20 +71,29 @@ class HackerStoryComments: NSObject, URLSessionDataDelegate {
         }
         
         do {
-            guard let respObj = try JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!) as? [String: Any] else {
+            guard let respObj = try JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: .allowFragments) as? [String: Any] else {
                 print("Error comment urlSession JSONSerialization")
                 return
             }
             
             let time = respObj["time"] as? Int ?? 0
             let text = respObj["text"] as? String ?? ""
+            let childComments = respObj["kids"] as? [Int] ?? [Int]()
             
             let cmt = comment(author: respObj["by"] as? String ?? "",
                               parentid: respObj["id"] as? Int ?? 0,
                               commentText: text.escapeXML(),
                               time: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(time))))
             
+            //add the parent comment
             storyComments.append(cmt)
+            
+            //add any child comments if any
+            if childComments.count > 0 {
+                for id in childComments {
+                    fetchComment(byID: id)
+                }
+            }
             
         } catch let err as NSError {
             print("Story comment error \(err.debugDescription)")
