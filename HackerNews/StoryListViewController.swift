@@ -85,12 +85,11 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let favorite = UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "Favorite", handler: {[weak self] (action, row) -> Void in
+        let favorite = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler: {[weak self] (action, row) -> Void in
             //closes the editor menu
             self?.isEditing = false
             print("favorite story")
             
-            // et story = (self?.hackerNewsStories[row.row])!
         })
         
         favorite.backgroundColor = UIColor.lightGray
