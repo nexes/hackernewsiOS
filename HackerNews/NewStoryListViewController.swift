@@ -43,7 +43,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
     
     func hackerNews(singleStoryCompleted story: HackerNewsStory) {
         newStories.append(story)
-        tableView.insertRows(at: [IndexPath(row: newStories.count - 1, section: 0)], with: UITableViewRowAnimation.top)
+        tableView.insertRows(at: [IndexPath(row: newStories.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
     
     func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {

@@ -132,12 +132,12 @@ class HackerNews: NSObject, URLSessionDataDelegate {
                 let newStory = HackerNewsStory(withJsonString: respString) {
                 
                 //check for duplicate stories: there is a better way to do this
-                for story in storyList {
-                    if story.Title == newStory.Title {
-                        print("Found a dupicate story") //stop our delegate
-                        return
-                    }
-                }
+//                for story in storyList {
+//                    if story.Title == newStory.Title {
+//                        print("Found a dupicate story") //stop our delegate
+//                        return
+//                    }
+//                }
                 
                 foundNewStory = true
                 storyList.append(newStory)
@@ -164,7 +164,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
     private func loadStoriesFromFromRange(from start: Int, to end: Int) {
         let start = min(start, end)
         
-        for i in start...end {
+        for i in start..<end {
             let url = baseURL + "/item/\(storyIDNumbers[i]).json"
             startNewSessionTask(withURLString: url, taskName: "single story")
         }

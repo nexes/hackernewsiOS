@@ -59,20 +59,12 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         print("tabBarController selected \(tabBarController.selectedIndex)")
         
-        switch tabBarController.selectedIndex {
-        case 0:
-            break
-            
-        case 1:
-            if let commentView = viewController as? CommentListViewController {
-                commentView.storyComments = _hackerStoryComments
+        if tabBarController.selectedIndex == 1 {
+            guard let commentView = viewController as? CommentListViewController else {
+                return
             }
             
-        case 2:
-            break
-            
-        default:
-            break
+            commentView.storyComments = _hackerStoryComments
         }
     }
     

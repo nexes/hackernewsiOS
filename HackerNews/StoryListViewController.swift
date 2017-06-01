@@ -46,14 +46,14 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     
     func hackerNews(singleStoryCompleted story: HackerNewsStory) {
         hackerNewsStories.append(story)
-        tableView.insertRows(at: [IndexPath(row: hackerNewsStories.count - 1, section: 0)], with: UITableViewRowAnimation.top)
+        tableView.insertRows(at: [IndexPath(row: hackerNewsStories.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
     
     
     // MARK: - TableView list refresh
     
     @IBAction func refreshStoryList(_ sender: UIRefreshControl) {
-//        refreshControl?.beginRefreshing()
+        // refreshControl?.beginRefreshing()
     }
     
     
@@ -82,6 +82,19 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
             storiesAreLoading = true
             hackerNews.showAdditionalStories(count: storyDisplayCount)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let favorite = UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "Favorite", handler: {[weak self] (action, row) -> Void in
+            //closes the editor menu
+            self?.isEditing = false
+            print("favorite story")
+            
+            // et story = (self?.hackerNewsStories[row.row])!
+        })
+        
+        favorite.backgroundColor = UIColor.lightGray
+        return [favorite]
     }
     
     // MARK: - Segue preperation
