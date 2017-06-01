@@ -7,13 +7,31 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    static var dataContext: NSManagedObjectContext {
+        let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+        return container.viewContext
+    }
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "FavoritesModel")
+        
+        container.loadPersistentStores(completionHandler: {(description, error) -> Void in
+            if let err = error as NSError? {
+                print("Error loading persistentStore \(err)")
+            }
+        })
+        
+        return container
+    }()
 
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -38,9 +56,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        saveContext()
     }
+    
+    func saveContext() {
+        let context = persistentContainer.viewContext
 
-
+        if context.hasChanges {
+            do {
+                
+                try context.save()
+                
+            } catch let err as NSError {
+                print("error saving to core data \(err.debugDescription)")
+            }
+        }
+    }
 }
 
