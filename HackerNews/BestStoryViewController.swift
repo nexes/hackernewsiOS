@@ -61,6 +61,39 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
         return bestStories.count
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler:
+        { [weak self] (action, indexPath) -> Void in
+            let context = AppDelegate.mainViewContext
+            
+            context.perform {
+                let newsStory = self?.bestStories[indexPath.row]
+                let story = Story(context: context)
+                
+                story.author = newsStory?.Author
+                story.title = newsStory?.Title
+                story.url = story.toString(fromURL: (newsStory?.Url)!)
+                story.date = story.toNSDate(fromDate: (newsStory?.Time)!)
+                story.score = story.toInt32(fromInt: (newsStory?.Score)!)
+                story.commentIDs = story.toData(fromIntArray: (newsStory?.CommentIDs)!)
+                
+                do {
+                    if context.hasChanges {
+                        try context.save()
+                    }
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            
+            self?.isEditing = false //closes the editor menu
+        })
+        
+        favoriteAction.backgroundColor = UIColor(red: 71/255, green: 198/255, blue: 237/255, alpha: 1)
+        return [favoriteAction]
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let bestCell = tableView.dequeueReusableCell(withIdentifier: "bestStoryCell", for: indexPath) as? BestStoryViewCell {
             let story = bestStories[indexPath.row]

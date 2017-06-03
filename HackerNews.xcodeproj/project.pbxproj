@@ -24,6 +24,7 @@
 		B07AABEC1EBAAF9E00643696 /* HackerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABEB1EBAAF9E00643696 /* HackerNews.swift */; };
 		B0D029CA1EC07B4500737505 /* CommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D029C91EC07B4500737505 /* CommentListViewController.swift */; };
 		B0D814641EDFA91100B2B4B5 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D814631EDFA91100B2B4B5 /* Story.swift */; };
+		B0D814681EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D814671EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift */; };
 		B0E7FE9D1EBBF57A004F44B3 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E7FE9C1EBBF57A004F44B3 /* StoryViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		B07AABEB1EBAAF9E00643696 /* HackerNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerNews.swift; sourceTree = "<group>"; };
 		B0D029C91EC07B4500737505 /* CommentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
 		B0D814631EDFA91100B2B4B5 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		B0D814671EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteStoryListViewController.swift; sourceTree = "<group>"; };
 		B0E7FE9C1EBBF57A004F44B3 /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				B07AABE51EBA9F3C00643696 /* StoryListViewController.swift */,
 				B0262B1F1ECBCEBF0046E2F7 /* NewStoryListViewController.swift */,
 				B0262B231ECC05010046E2F7 /* BestStoryViewController.swift */,
+				B0D814671EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift */,
 				B0D029C91EC07B4500737505 /* CommentListViewController.swift */,
 				B01A80561EC1A9D00085E6EC /* CommentViewCell.swift */,
 				B0E7FE9C1EBBF57A004F44B3 /* StoryViewController.swift */,
@@ -215,6 +218,7 @@
 				B0262B241ECC05010046E2F7 /* BestStoryViewController.swift in Sources */,
 				B0E7FE9D1EBBF57A004F44B3 /* StoryViewController.swift in Sources */,
 				B07AABE81EBAA25200643696 /* StoryListViewCell.swift in Sources */,
+				B0D814681EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift in Sources */,
 				B0262B221ECBD2580046E2F7 /* NewStoryViewCell.swift in Sources */,
 				B07AABD31EBA9E9D00643696 /* AppDelegate.swift in Sources */,
 				B0262B201ECBCEBF0046E2F7 /* NewStoryListViewController.swift in Sources */,

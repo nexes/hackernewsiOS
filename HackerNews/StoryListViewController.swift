@@ -64,15 +64,14 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let hackerNewsCell = tableView.dequeueReusableCell(withIdentifier: "HNcell", for: indexPath) as? StoryListViewCell {
-            let story = hackerNewsStories[indexPath.row]
-            hackerNewsCell.story = story
-            
-            return hackerNewsCell
+        guard let hackerNewsCell = tableView.dequeueReusableCell(withIdentifier: "HNcell", for: indexPath) as? StoryListViewCell else {
+            return UITableViewCell()
         }
         
-        //shouldn't get here
-        return UITableViewCell()
+        let story = hackerNewsStories[indexPath.row]
+        
+        hackerNewsCell.story = story
+        return hackerNewsCell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -85,15 +84,45 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let favorite = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler: {[weak self] (action, row) -> Void in
-            //closes the editor menu
+        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Share", handler:
+        {[weak self] (action, indexPath) in
             self?.isEditing = false
-            print("favorite story")
-            
         })
         
-        favorite.backgroundColor = UIColor.lightGray
-        return [favorite]
+        let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler:
+        { [weak self] (action, indexPath) -> Void in
+            let context = AppDelegate.mainViewContext
+            
+            context.perform {
+                let newsStory = self?.hackerNewsStories[indexPath.row]
+                let story = Story(context: context)
+                
+                story.author = newsStory?.Author
+                story.title = newsStory?.Title
+                story.url = story.toString(fromURL: (newsStory?.Url)!)
+                story.date = story.toNSDate(fromDate: (newsStory?.Time)!)
+                story.score = story.toInt32(fromInt: (newsStory?.Score)!)
+                story.commentIDs = story.toData(fromIntArray: (newsStory?.CommentIDs)!)
+                
+                do {
+                    if context.hasChanges {
+                        try context.save()
+                    }
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            
+            self?.isEditing = false //closes the editor menu
+            let barItem = self?.tabBarController?.tabBar.items?[1]
+            barItem?.badgeValue = "foo"
+        })
+        
+        favoriteAction.backgroundColor = UIColor(red: 71/255, green: 198/255, blue: 237/255, alpha: 1)
+        shareAction.backgroundColor = UIColor.lightGray
+        
+        return [favoriteAction, shareAction]
     }
     
     // MARK: - Segue preperation

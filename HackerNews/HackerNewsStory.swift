@@ -66,6 +66,13 @@ struct HackerNewsStory {
         }
     }
     
+    public var CommentIDs: [Int] {
+        get {
+            return kids ?? [Int]()
+        }
+    }
+    
+    
     
     init?(withJsonString jsonString: String) {
         if (!convertStringToJSON(jsonString)) {
