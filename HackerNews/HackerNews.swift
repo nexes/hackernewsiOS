@@ -123,21 +123,15 @@ class HackerNews: NSObject, URLSessionDataDelegate {
                 }
                 
                 if storyIDNumbers.isEmpty == false {
+                    sessionTasks.removeValue(forKey: dataTask.taskIdentifier)
                     loadStoriesFromFromRange(from: 0, to: storyDisplayCount)
                 }
             }
             
+            
         } else if sessionTasks[dataTask.taskIdentifier] == "single story" {
             if let respString = String(bytes: data, encoding: .utf8),
                 let newStory = HackerNewsStory(withJsonString: respString) {
-                
-                //check for duplicate stories: there is a better way to do this
-//                for story in storyList {
-//                    if story.Title == newStory.Title {
-//                        print("Found a dupicate story") //stop our delegate
-//                        return
-//                    }
-//                }
                 
                 foundNewStory = true
                 storyList.append(newStory)
