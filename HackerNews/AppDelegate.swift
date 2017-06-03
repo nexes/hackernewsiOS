@@ -14,7 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    static var dataContext: NSManagedObjectContext {
+    static var delegate: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    static var mainViewContext: NSManagedObjectContext {
         let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
         return container.viewContext
     }
