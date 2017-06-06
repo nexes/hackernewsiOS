@@ -16,7 +16,6 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let fetchRequest: NSFetchRequest<Story> = Story.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
@@ -31,6 +30,14 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
         } catch {
             print("error performFetch \(error)")
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.title = "Favorites"
+        navigationController?.navigationBar.barTintColor = UIColor(red: 81/255, green: 144/255, blue: 145/255, alpha: 1)
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
     override func didReceiveMemoryWarning() {
