@@ -77,7 +77,7 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
         } else if (hackerStory != nil) {
             storyTitleLabel.text = hackerStory?.Title
             storyAuthorLabel.text = hackerStory?.Author
-            storyScoreLabel.text = "score \(story?.score ?? 0)"
+            storyScoreLabel.text = "score \(hackerStory?.Score ?? 0)"
             
             if (hackerStory?.Url != nil) {
                 setupURLView(with: (hackerStory?.Url)!)

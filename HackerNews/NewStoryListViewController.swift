@@ -62,6 +62,25 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let storyAtRow = newStories[indexPath.row]
+        let storyContent: Any = storyAtRow.Url ?? storyAtRow.Text ?? "" // kind of a hack but it works, if there is no url, use the text, if no text, empty string
+        let shareViewController = UIActivityViewController(activityItems: [storyAtRow.Title!, storyContent], applicationActivities: nil)
+        
+        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Share", handler:
+        {[weak self] (action, indexPath) in
+            
+            shareViewController.excludedActivityTypes = [
+                UIActivityType.airDrop,
+                UIActivityType.openInIBooks,
+                UIActivityType.assignToContact,
+                UIActivityType.postToVimeo,
+                UIActivityType.saveToCameraRoll
+            ]
+            
+            self?.navigationController?.present(shareViewController, animated: true, completion: nil)
+            self?.isEditing = false
+        })
+
         let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler:
         { [weak self] (action, indexPath) in
             let context = AppDelegate.mainViewContext
@@ -90,8 +109,10 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
             self?.isEditing = false
         })
         
+        shareAction.backgroundColor = UIColor.lightGray
         favoriteAction.backgroundColor = UIColor(red: 71/255, green: 198/255, blue: 237/255, alpha: 1)
-        return [favoriteAction]
+        
+        return [favoriteAction, shareAction]
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
