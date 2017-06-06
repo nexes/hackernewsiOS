@@ -49,6 +49,10 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
         bestStories.append(story)
         tableView.insertRows(at: [IndexPath(row: bestStories.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
+    
+    func hackerNews(updatedStoryCompleted story: HackerNewsStory) {
+        //TODO
+    }
 
     
     // MARK: - Table view data source

@@ -107,7 +107,7 @@ extension String {
             return self
         }
         
-        //ugh, need to redesign this
+        //ugh
         return newString.replacingOccurrences(of: "&#x27;", with: "'")
                         .replacingOccurrences(of: "&#x2F;", with: "/")
                         .replacingOccurrences(of: "&quot;", with: "\"")

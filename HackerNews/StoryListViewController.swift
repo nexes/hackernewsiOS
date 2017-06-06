@@ -49,11 +49,15 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
         tableView.insertRows(at: [IndexPath(row: hackerNewsStories.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
     }
     
+    func hackerNews(updatedStoryCompleted story: HackerNewsStory) {
+        // if we already have this story, lets remove it and replace it with the updated version
+    }
+    
     
     // MARK: - TableView list refresh
     
     @IBAction func refreshStoryList(_ sender: UIRefreshControl) {
-        // refreshControl?.beginRefreshing()
+        print("refreshing list")
     }
     
     

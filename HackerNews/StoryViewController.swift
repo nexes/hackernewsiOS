@@ -35,7 +35,6 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("storyVC viewDidLoad")
         tabBarController?.delegate = self
         navigationController?.navigationBar.tintColor = UIColor.white
         

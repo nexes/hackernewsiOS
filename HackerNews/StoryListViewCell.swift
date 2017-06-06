@@ -14,22 +14,22 @@ class StoryListViewCell: UITableViewCell {
     @IBOutlet weak var storyDateLabel: UILabel!
     @IBOutlet weak var storyCountLabel: UILabel!
     @IBOutlet weak var storyCommentCountLabel: UILabel!
-    
-    
+
+
     var story: HackerNewsStory! {
-        didSet{
+        didSet {
             updateCellLabels()
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     private func updateCellLabels() {
         storyTitleLabel.text = story.Title
         storyAuthorLabel.text = story.Author

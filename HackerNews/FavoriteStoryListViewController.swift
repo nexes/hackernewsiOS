@@ -16,6 +16,7 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let fetchRequest: NSFetchRequest<Story> = Story.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 

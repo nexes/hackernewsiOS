@@ -8,11 +8,11 @@
 
 import UIKit
 
+
 class FavoriteStoryViewCell: UITableViewCell {
     @IBOutlet weak var storyTitleLabel: UILabel!
     @IBOutlet weak var storyAuthorLabel: UILabel!
     @IBOutlet weak var storyDateLabel: UILabel!
-    @IBOutlet weak var storyScoreLabel: UILabel!
     
     var story: Story? {
         didSet {
@@ -31,7 +31,6 @@ class FavoriteStoryViewCell: UITableViewCell {
     private func updateUI() {
         storyTitleLabel.text = story?.title
         storyAuthorLabel.text = story?.author
-        storyDateLabel.text = "asdf"
-        storyScoreLabel.text = String(story?.score ?? 0)
+        storyDateLabel.text = DateFormatter.localizedString(from: (story?.date)! as Date, dateStyle: .medium, timeStyle: .short)
     }
 }
