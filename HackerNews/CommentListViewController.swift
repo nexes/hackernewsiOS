@@ -29,14 +29,13 @@ class CommentListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let commentCellView = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentViewCell {
-            if let comment = storyComments?[indexPath.row] {
-                commentCellView.setupComment(withAuthor: comment.author, withText: comment.commentText, withDate: comment.time)
-                
-                return commentCellView
-            }
+        guard let commentCellView = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentViewCell else {
+            return UITableViewCell()
         }
         
-        return UITableViewCell() // shouldn't get here
+        let comment = (storyComments?[indexPath.row])!
+        commentCellView.setupComment(withAuthor: comment.author, withText: comment.commentText, withDate: comment.time)
+        
+        return commentCellView
     }
 }

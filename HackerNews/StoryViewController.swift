@@ -16,22 +16,26 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
     @IBOutlet weak var displayStoryView: UIView!
     
     private var wkViewConfiguration: WKWebViewConfiguration!
-    private var _hackerStory: HackerNewsStory!
-    private var _hackerStoryComments: HackerStoryComments!
+    private var hackerStoryComments: HackerStoryComments!
     
-    var hackerStory: HackerNewsStory! {
-        set {
-            _hackerStory = newValue
-            _hackerStoryComments = _hackerStory.comments()
+    var hackerStory: HackerNewsStory? {
+        didSet {
+            hackerStoryComments = hackerStory?.comments()
         }
-        get {
-            return _hackerStory
+    }
+    
+    var favoriteStory: Story? {
+        didSet {
+            if let commentData = favoriteStory?.commentIDs {
+                hackerStoryComments = favoriteStory?.storyComments(fromData: commentData)
+            }
         }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("storyVC viewDidLoad")
         tabBarController?.delegate = self
         navigationController?.navigationBar.tintColor = UIColor.white
         
@@ -39,16 +43,11 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
         wkViewConfiguration.ignoresViewportScaleLimits = true
         wkViewConfiguration.allowsInlineMediaPlayback = true
         
-        storyTitleLabel.text = hackerStory.Title
-        storyAuthorLabel.text = hackerStory.Author
-        storyScoreLabel.text = "score \(hackerStory.Score)"
-        
-        
-        if (hackerStory.Url != nil) {
-            setupURLView()
+        if (favoriteStory != nil) {
+            updateUI(withStory: favoriteStory)
             
-        } else if (hackerStory.Text != nil) {
-            setupTextView()
+        } else {
+            updateUI()
         }
     }
     
@@ -57,27 +56,49 @@ class StoryViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("tabBarController selected \(tabBarController.selectedIndex)")
-        
         if tabBarController.selectedIndex == 1 {
             guard let commentView = viewController as? CommentListViewController else {
                 return
             }
             
-            commentView.storyComments = _hackerStoryComments
+            commentView.storyComments = hackerStoryComments
         }
     }
     
-    private func setupURLView() {
+    private func updateUI(withStory story: Story? = nil) {
+        if (story != nil) {
+            storyTitleLabel.text = story?.title
+            storyAuthorLabel.text = story?.author
+            storyScoreLabel.text = "score \(story?.score ?? 0)"
+            
+            if let url = URL(string: (story?.url)!) {
+                setupURLView(with: url)
+            }
+            
+        } else if (hackerStory != nil) {
+            storyTitleLabel.text = hackerStory?.Title
+            storyAuthorLabel.text = hackerStory?.Author
+            storyScoreLabel.text = "score \(story?.score ?? 0)"
+            
+            if (hackerStory?.Url != nil) {
+                setupURLView(with: (hackerStory?.Url)!)
+                
+            } else if (hackerStory?.Text != nil) {
+                setupTextView()
+            }
+        }
+    }
+    
+    private func setupURLView(with url: URL) {
         let webView = WKWebView(frame: view.frame, configuration: wkViewConfiguration)
-        webView.load(URLRequest(url: hackerStory.Url!))
+        webView.load(URLRequest(url: url))
         
         displayStoryView.addSubview(webView)
     }
     
     private func setupTextView() {
         let textView = UITextView(frame: displayStoryView.frame)
-        textView.text = hackerStory.Text
+        textView.text = hackerStory?.Text
         
         displayStoryView.addSubview(textView)
     }

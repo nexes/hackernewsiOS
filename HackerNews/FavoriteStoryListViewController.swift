@@ -42,11 +42,12 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath)
-        let story = fetchedData?.object(at: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as? FavoriteStoryViewCell else {
+            return UITableViewCell()
+        }
         
-        cell.textLabel?.text = story?.title
-        cell.detailTextLabel?.text = story?.author
+        let story = fetchedData?.object(at: indexPath)
+        cell.story = story
         
         return cell
     }
@@ -78,11 +79,20 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
             tableView.insertRows(at: [newIndexPath!], with: UITableViewRowAnimation.automatic)
             
         case .delete:
-            print("didChange delete called")
             tableView.deleteRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
             
         default:
             break
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let story = fetchedData?.object(at: tableView.indexPathForSelectedRow!)
+        
+        if let tabBarVC = segue.destination as? UITabBarController {
+            if let storyVC = tabBarVC.viewControllers?[0] as? StoryViewController {
+                storyVC.favoriteStory = story
+            }
         }
     }
 }

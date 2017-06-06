@@ -12,7 +12,6 @@ import CoreData
 
 class Story: NSManagedObject {
     
-    
     func toString(fromURL url: URL) -> String {
         return url.absoluteString
     }
@@ -39,5 +38,10 @@ class Story: NSManagedObject {
         }
         
         return commentIDs
+    }
+    
+    func storyComments(fromData data: NSData) -> HackerStoryComments {
+        let commentData = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as? [Int]
+        return HackerStoryComments(withCommentIDs: commentData!)
     }
 }
