@@ -72,7 +72,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
             loadStoriesFromFromRange(from: startStoryDisplay, to: startStoryDisplay + storyDisplayCount)
 
         } else {
-            //finish this part
+            loadStoriesFromFromRange(from: startStoryDisplay, to: storyIDNumbers.count - 1)
         }
     }
     

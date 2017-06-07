@@ -57,7 +57,7 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     // MARK: - TableView list refresh
     
     @IBAction func refreshStoryList(_ sender: UIRefreshControl) {
-        print("refreshing list")
+        //TODO: may not implement
     }
     
     
