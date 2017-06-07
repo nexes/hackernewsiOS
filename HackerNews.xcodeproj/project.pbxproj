@@ -173,7 +173,7 @@
 				TargetAttributes = {
 					B07AABCE1EBA9E9D00643696 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = KLV73822WK;
+						DevelopmentTeam = TKA74AGLX7;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -356,10 +356,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KLV73822WK;
+				DEVELOPMENT_TEAM = TKA74AGLX7;
 				INFOPLIST_FILE = HackerNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jberria.HackerNews;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jberria.HackerNewsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -370,10 +370,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KLV73822WK;
+				DEVELOPMENT_TEAM = TKA74AGLX7;
 				INFOPLIST_FILE = HackerNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jberria.HackerNews;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jberria.HackerNewsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

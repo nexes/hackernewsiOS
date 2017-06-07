@@ -13,7 +13,7 @@
         <!--Best-->
         <scene sceneID="xfi-Lh-YKn">
             <objects>
-                <tableViewController id="BKA-d6-wfD" customClass="BestStoryViewController" customModule="HackerNews" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="bestStoryViewController" id="BKA-d6-wfD" customClass="BestStoryViewController" customModule="HackerNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" id="OaC-Zs-C8i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +216,7 @@
         <!--New-->
         <scene sceneID="Sh0-qt-o5m">
             <objects>
-                <tableViewController id="kJK-j8-zW8" customClass="NewStoryListViewController" customModule="HackerNews" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="newStoryViewController" id="kJK-j8-zW8" customClass="NewStoryListViewController" customModule="HackerNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="28" sectionFooterHeight="28" id="YB9-un-7JK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -382,7 +382,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="GIJ-MQ-diS">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="BeZ-29-Cf3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="BeZ-29-Cf3" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="rin-bh-rU2"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="NDH-fn-5Vs">
@@ -553,7 +553,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bCT-sr-Uxc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QOp-Wl-66q" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="QOp-Wl-66q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b2E-dZ-kF1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -598,6 +598,6 @@
         <image name="topStory" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qIg-xT-AMk"/>
+        <segue reference="Evh-2q-SOv"/>
     </inferredMetricsTieBreakers>
 </document>
