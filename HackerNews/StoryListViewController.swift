@@ -13,6 +13,7 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     private var hackerNewsStories = [HackerNewsStory]()
     private var storyDisplayCount = 30
     private var storiesAreLoading = true
+    private var favoriteCountKey = "favoriteCount"
     
     
     override func viewDidLoad() {
@@ -23,6 +24,8 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        
+        updateFavoriteBadge()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +54,7 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     
     func hackerNews(updatedStoryCompleted story: HackerNewsStory) {
         // if we already have this story, lets remove it and replace it with the updated version
+        //TODO: may not need in this fashion
     }
     
     
@@ -106,6 +110,7 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
             self?.navigationController?.present(shareViewController, animated: true, completion: nil)
             self?.isEditing = false
         })
+        
         let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler:
         { [weak self] (action, indexPath) -> Void in
             let context = AppDelegate.mainViewContext
@@ -131,15 +136,29 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
                 }
             }
             
-            self?.isEditing = false //closes the editor menu
-            let barItem = self?.tabBarController?.tabBar.items?[1]
-            barItem?.badgeValue = "foo"
+            self?.updateFavoriteBadge(by: 1)
+            self?.isEditing = false
         })
         
         favoriteAction.backgroundColor = UIColor(red: 71/255, green: 198/255, blue: 237/255, alpha: 1)
         shareAction.backgroundColor = UIColor.lightGray
         
         return [favoriteAction, shareAction]
+    }
+    
+    // MARK: - update favorite badge
+    
+    private func updateFavoriteBadge(by count: Int? = nil) {
+        let standardDefault = UserDefaults.standard
+        let barItem = tabBarController?.tabBar.items?[3]
+        var currentCount = standardDefault.integer(forKey: favoriteCountKey)
+        
+        if let newCount = count{
+            currentCount += newCount
+            standardDefault.set(currentCount, forKey: favoriteCountKey)
+        }
+        
+        barItem?.badgeValue = "\(currentCount)"
     }
     
     // MARK: - Segue preperation

@@ -14,6 +14,7 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     private var hackerNews: HackerNews!
     private var storyDisplayCount = 30
     private var storiesAreLoading = true
+    private var favoriteCountKey = "favoriteCount"
     
     
     override func viewDidLoad() {
@@ -24,6 +25,8 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
         
         hackerNews = HackerNews(withDelegate: self)
         hackerNews.fetchBestStories(limitNumberOfStories: storyDisplayCount)
+        
+        updateFavoriteBadge()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +113,7 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
                 }
             }
             
+            self?.updateFavoriteBadge(by: 1)
             self?.isEditing = false //closes the editor menu
         })
         
@@ -140,6 +144,20 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
         }
     }
     
+    // MARK: - update favorite badge
+    
+    private func updateFavoriteBadge(by count: Int? = nil) {
+        let standardDefault = UserDefaults.standard
+        let barItem = tabBarController?.tabBar.items?[3]
+        var currentCount = standardDefault.integer(forKey: favoriteCountKey)
+        
+        if let newCount = count{
+            currentCount += newCount
+            standardDefault.set(currentCount, forKey: favoriteCountKey)
+        }
+        
+        barItem?.badgeValue = "\(currentCount)"
+    }
 
     // MARK: - Segue navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

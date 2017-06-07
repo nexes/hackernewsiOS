@@ -12,6 +12,7 @@ import CoreData
 
 class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     private var fetchedData: NSFetchedResultsController<Story>?
+    private var favoriteCountKey = "favoriteCount"
 
     
     override func viewDidLoad() {
@@ -64,6 +65,8 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "delete", handler:
         {[weak self] (action, indexPath) in
             let context = AppDelegate.mainViewContext
+            let standardDefault = UserDefaults.standard
+            let barItem = self?.tabBarController?.tabBar.items?[3]
             
             context.perform {
                 if let story = self?.fetchedData?.object(at: indexPath) {
@@ -76,6 +79,12 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
                     }
                 }
             }
+            
+            var count = standardDefault.integer(forKey: (self?.favoriteCountKey)!)
+            count -= 1
+            
+            barItem?.badgeValue = "\(count)"
+            standardDefault.set(count, forKey: (self?.favoriteCountKey)!)
         })
         
         return [deleteAction]
