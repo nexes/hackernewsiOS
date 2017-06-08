@@ -44,7 +44,7 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     
     // MARK: - Hacker News story delegates
     
-    func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
+    func hackerNewsAllStoriesCompleted() {
         storiesAreLoading = false
     }
     

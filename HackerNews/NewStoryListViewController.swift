@@ -53,7 +53,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
         //TODO
     }
     
-    func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
+    func hackerNewsAllStoriesCompleted() {
         storiesAreLoading = false
     }
     

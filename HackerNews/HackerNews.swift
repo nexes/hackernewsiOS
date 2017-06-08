@@ -10,26 +10,24 @@ import Foundation
 
 
 protocol HackerNewsStoriesDelegate {
-    func hackerNews(allStoriesCompleted topStories: [HackerNewsStory])
+    func hackerNewsAllStoriesCompleted()
     func hackerNews(singleStoryCompleted story: HackerNewsStory)
     func hackerNews(updatedStoryCompleted story: HackerNewsStory)
 }
 
 
 class HackerNews: NSObject, URLSessionDataDelegate {
-    private var baseURL = "https://hacker-news.firebaseio.com/v0/"
+    private let baseURL = "https://hacker-news.firebaseio.com/v0/"
+    
     private var foundNewStory = false
-    private var storyDisplayCount: Int
-    private var startStoryDisplay: Int
-    private var storyIDNumbers: [Int]
-    private var sessionTasks: [Int: String]
+    private var storyDisplayCount = 10
+    private var startStoryDisplay = 0
+    private var storyIDNumbers = [Int]()
+    private var sessionTasks = [Int: String]()
+    private var sessionValid = true
+    
     private var session: URLSession?
-    private var sessionValid: Bool
-
-    lazy private var storyList: [HackerNewsStory] = {
-        return [HackerNewsStory]()
-    }()
-
+    private var hackerStory: HackerNewsStory?
     public var delegate: HackerNewsStoriesDelegate?
 
 
@@ -37,12 +35,6 @@ class HackerNews: NSObject, URLSessionDataDelegate {
         if delegate != nil {
             self.delegate = delegate
         }
-
-        storyDisplayCount = 10
-        startStoryDisplay = 0
-        storyIDNumbers = [Int]()
-        sessionTasks = [Int: String]()
-        sessionValid = true
 
         super.init()
         session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
@@ -89,7 +81,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let taskType = sessionTasks.removeValue(forKey: task.taskIdentifier) {
-            if taskType == "single story" && foundNewStory, let newStory = storyList.last {
+            if taskType == "single story" && foundNewStory, let newStory = hackerStory {
                 foundNewStory = false
 
                 DispatchQueue.main.async { [weak self] in
@@ -100,7 +92,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
 
         if sessionTasks.isEmpty {
             DispatchQueue.main.async { [weak self] in
-                self?.delegate?.hackerNews(allStoriesCompleted: (self?.storyList)!)
+                self?.delegate?.hackerNewsAllStoriesCompleted()
             }
 
             session.finishTasksAndInvalidate()
@@ -138,7 +130,7 @@ class HackerNews: NSObject, URLSessionDataDelegate {
                 let newStory = HackerNewsStory(withJsonString: respString) {
 
                 foundNewStory = true
-                storyList.append(newStory)
+                hackerStory = newStory
             }
         }
     }
