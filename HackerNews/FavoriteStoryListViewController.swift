@@ -62,7 +62,7 @@ class FavoriteStoryListViewController: UITableViewController, NSFetchedResultsCo
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "delete", handler:
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "\u{274C} \nDelete", handler:
         {[weak self] (action, indexPath) in
             let context = AppDelegate.mainViewContext
             let standardDefault = UserDefaults.standard

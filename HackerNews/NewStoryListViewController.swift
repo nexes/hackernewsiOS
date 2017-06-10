@@ -82,7 +82,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
         let storyContent: Any = storyAtRow.Url ?? storyAtRow.Text ?? "" // kind of a hack but it works, if there is no url, use the text, if no text, empty string
         let shareViewController = UIActivityViewController(activityItems: [storyAtRow.Title!, storyContent], applicationActivities: nil)
         
-        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Share", handler:
+        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "\u{1F4E4} \nShare", handler:
         {[weak self] (action, indexPath) in
             
             shareViewController.excludedActivityTypes = [
@@ -97,7 +97,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
             self?.isEditing = false
         })
 
-        let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler:
+        let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "\u{2B50} \nSave", handler:
         { [weak self] (action, indexPath) in
             let context = AppDelegate.mainViewContext
             
