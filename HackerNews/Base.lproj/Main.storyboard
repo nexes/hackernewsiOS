@@ -107,6 +107,12 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Best" image="bestStory" id="3tc-CQ-kOf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="dBu-ES-Hva">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshStories:" destination="BKA-d6-wfD" eventType="valueChanged" id="xWZ-pt-3MQ"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74d-cu-Yfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,6 +214,14 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Top" image="topStory" id="eoc-9e-RiB"/>
                     <navigationItem key="navigationItem" id="vaE-3E-nFw"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="efM-Pk-RQ7">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
+                        <connections>
+                            <action selector="refreshStoryList:" destination="I2R-vf-No6" eventType="valueChanged" id="qNu-ow-ozd"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fK-86-Iif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -309,6 +323,12 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="New" image="newStory" id="elT-tg-mm6"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="CQ7-Zz-DFx">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshStories:" destination="kJK-j8-zW8" eventType="valueChanged" id="Nqv-ls-p9h"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sp-u7-mVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

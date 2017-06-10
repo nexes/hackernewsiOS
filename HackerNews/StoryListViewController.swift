@@ -9,11 +9,12 @@
 import UIKit
 
 class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate {
-    private var hackerNews: HackerNews!
+    private let storyDisplayCount = 30
+    private let favoriteCountKey = "favoriteCount"
+    
     private var hackerNewsStories = [HackerNewsStory]()
-    private var storyDisplayCount = 30
+    private var hackerNews: HackerNews!
     private var storiesAreLoading = true
-    private var favoriteCountKey = "favoriteCount"
     
     
     override func viewDidLoad() {
@@ -43,25 +44,38 @@ class StoryListViewController: UITableViewController, HackerNewsStoriesDelegate 
     
     // MARK: - Hacker News delegate callbacks
     
-    func hackerNews(allStoriesCompleted topStories: [HackerNewsStory]) {
+    func hackerNewsAllStoriesCompleted() {
         storiesAreLoading = false
+        
+//        if (refreshControl?.isRefreshing)! {
+//            refreshControl?.endRefreshing()
+//        }
     }
     
     func hackerNews(singleStoryCompleted story: HackerNewsStory) {
+        if (refreshControl?.isRefreshing)! {
+            refreshControl?.endRefreshing()
+        }
+        
         hackerNewsStories.append(story)
+        
+        tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: hackerNewsStories.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        tableView.endUpdates()
     }
     
     func hackerNews(updatedStoryCompleted story: HackerNewsStory) {
-        // if we already have this story, lets remove it and replace it with the updated version
-        //TODO: may not need in this fashion
     }
     
     
     // MARK: - TableView list refresh
     
     @IBAction func refreshStoryList(_ sender: UIRefreshControl) {
-        //TODO: may not implement
+        hackerNewsStories.removeAll(keepingCapacity: true)
+        tableView.reloadData()
+        refreshControl?.beginRefreshing()
+        
+        hackerNews.fetchTopStories(limitNumberOfStories: storyDisplayCount)
     }
     
     

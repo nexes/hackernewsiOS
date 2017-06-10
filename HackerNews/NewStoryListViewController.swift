@@ -10,11 +10,12 @@ import UIKit
 
 
 class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelegate {
-    private var hackerNews: HackerNews?
+    private let storyDisplayCount = 30
+    private let favoriteCountKey = "favoriteCount"
+    
     private var newStories = [HackerNewsStory]()
-    private var storyDisplayCount = 30
+    private var hackerNews: HackerNews!
     private var storiesAreLoading = true
-    private var favoriteCountKey = "favoriteCount"
     
     
     override func viewDidLoad() {
@@ -24,7 +25,7 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
         tableView.estimatedRowHeight = 100
         
         hackerNews = HackerNews(withDelegate: self)
-        hackerNews?.fetchNewStories(limitNumberOfStories: storyDisplayCount)
+        hackerNews.fetchNewStories(limitNumberOfStories: storyDisplayCount)
         
         updateFavoriteBadge()
     }
@@ -41,16 +42,28 @@ class NewStoryListViewController: UITableViewController, HackerNewsStoriesDelega
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func refreshStories(_ sender: UIRefreshControl) {
+        newStories.removeAll(keepingCapacity: true)
+        tableView.reloadData()
+        refreshControl?.beginRefreshing()
+        
+        hackerNews.fetchNewStories(limitNumberOfStories: storyDisplayCount)
+    }
     
     // MARK: - Hacker News delegates
     
     func hackerNews(singleStoryCompleted story: HackerNewsStory) {
+        if (refreshControl?.isRefreshing)! {
+            refreshControl?.endRefreshing()
+        }
+        
         newStories.append(story)
+        tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: newStories.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        tableView.endUpdates()
     }
     
     func hackerNews(updatedStoryCompleted story: HackerNewsStory) {
-        //TODO
     }
     
     func hackerNewsAllStoriesCompleted() {

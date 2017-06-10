@@ -10,11 +10,12 @@ import UIKit
 
 
 class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate {
+    private let storyDisplayCount = 30
+    private let favoriteCountKey = "favoriteCount"
+    
     private var bestStories = [HackerNewsStory]()
     private var hackerNews: HackerNews!
-    private var storyDisplayCount = 30
     private var storiesAreLoading = true
-    private var favoriteCountKey = "favoriteCount"
     
     
     override func viewDidLoad() {
@@ -42,6 +43,14 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     }
     
     
+    @IBAction func refreshStories(_ sender: UIRefreshControl) {
+        bestStories.removeAll(keepingCapacity: true)
+        tableView.reloadData()
+        refreshControl?.beginRefreshing()
+        
+        hackerNews.fetchTopStories(limitNumberOfStories: storyDisplayCount)
+    }
+    
     // MARK: - Hacker News story delegates
     
     func hackerNewsAllStoriesCompleted() {
@@ -49,12 +58,17 @@ class BestStoryViewController: UITableViewController, HackerNewsStoriesDelegate 
     }
     
     func hackerNews(singleStoryCompleted story: HackerNewsStory) {
+        if (refreshControl?.isRefreshing)! {
+            refreshControl?.endRefreshing()
+        }
+        
         bestStories.append(story)
+        tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: bestStories.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        tableView.endUpdates()
     }
     
     func hackerNews(updatedStoryCompleted story: HackerNewsStory) {
-        //TODO
     }
 
     
