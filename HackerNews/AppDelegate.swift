@@ -36,6 +36,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        guard let navigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainNavigationViewController") as? UINavigationController else {
+            completionHandler(false)
+            return
+        }
+        
+        guard let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabBarViewController") as? UITabBarController else {
+            completionHandler(false)
+            return
+        }
+        
+        switch shortcutItem.type {
+            case "com.jberria.beststories":
+            tabBarController.selectedIndex = 2
+            
+            case "com.jberria.newstories":
+            tabBarController.selectedIndex = 1
+            
+            case "com.jberria.favoritestories":
+            tabBarController.selectedIndex = 3
+            
+        default:
+            completionHandler(false)
+            return
+        }
+        
+        navigationController.viewControllers[0] = tabBarController // pushViewController(tabBarController, animated: true)
+        window?.rootViewController = navigationController
+        
+        completionHandler(true)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
