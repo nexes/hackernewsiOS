@@ -37,6 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        guard let splitViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainSplitViewController") as? UISplitViewController else {
+            completionHandler(false)
+            return
+        }
+        
         guard let navigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainNavigationViewController") as? UINavigationController else {
             completionHandler(false)
             return
@@ -61,9 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(false)
             return
         }
-        
-        navigationController.viewControllers[0] = tabBarController // pushViewController(tabBarController, animated: true)
-        window?.rootViewController = navigationController
+
+        splitViewController.viewControllers[0] = navigationController
+        navigationController.viewControllers[0] = tabBarController
+        window?.rootViewController = splitViewController
         
         completionHandler(true)
     }

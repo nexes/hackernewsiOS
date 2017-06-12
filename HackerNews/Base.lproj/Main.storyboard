@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mer-Tp-KYF" id="tUE-9P-whx">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="111.66666666666667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EY-UD-SUF">
@@ -139,7 +139,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Kh-PI-YkB" id="4xA-zC-S6U">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="119.66666666666667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaS-6o-iJd">
@@ -248,7 +248,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yLt-Jz-1bd" id="Skf-hC-iRU">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="119.66666666666667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpr-SP-01q">
@@ -349,7 +349,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TZK-sX-Bav" id="jhN-8N-sgJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="81.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6H-lW-mn2">
@@ -436,7 +436,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="251"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UcN-Oy-Zoi" id="i8n-dm-gGG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="251"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h8H-JB-N43">
@@ -450,13 +450,13 @@
                                             <rect key="frame" x="336" y="8.0000000000000018" width="69.666666666666686" height="16.666666666666671"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rua-yu-Lw3">
-                                                    <rect key="frame" x="0.33333333333331439" y="0.0" width="35.333333333333314" height="16.666666666666668"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="35.333333333333314" height="16.666666666666668"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4SS-pD-H9u">
-                                                    <rect key="frame" x="45.666666666666629" y="0.0" width="24.333333333333371" height="16.666666666666668"/>
+                                                    <rect key="frame" x="45.333333333333314" y="0.0" width="24.333333333333371" height="16.666666666666668"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -572,10 +572,10 @@
             </objects>
             <point key="canvasLocation" x="1390" y="-914"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Main Split View Controller-->
         <scene sceneID="1kh-PR-Bsh">
             <objects>
-                <splitViewController id="cEc-q1-YHe" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="mainSplitViewController" id="cEc-q1-YHe" customClass="MainSplitViewController" customModule="HackerNews" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="xMp-9B-tRr" kind="relationship" relationship="detailViewController" id="cvJ-LH-t5Y"/>
                         <segue destination="QOp-Wl-66q" kind="relationship" relationship="masterViewController" id="nlK-qf-KDL"/>
@@ -616,8 +616,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="hYG-Xb-Lts" kind="relationship" relationship="viewControllers" id="Hya-iL-xjg"/>
-                        <segue destination="dpf-oF-LQ7" kind="relationship" relationship="viewControllers" id="8df-Sl-fQe"/>
+                        <segue destination="hYG-Xb-Lts" kind="relationship" relationship="viewControllers" id="Vcq-zV-v6V"/>
+                        <segue destination="dpf-oF-LQ7" kind="relationship" relationship="viewControllers" id="n2F-wN-pLS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8e-Tw-ex8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -634,6 +634,6 @@
         <image name="topStory" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rlV-GC-GKj"/>
+        <segue reference="cvJ-LH-t5Y"/>
     </inferredMetricsTieBreakers>
 </document>

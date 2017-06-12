@@ -23,6 +23,7 @@
 		B07AABE81EBAA25200643696 /* StoryListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABE71EBAA25200643696 /* StoryListViewCell.swift */; };
 		B07AABEC1EBAAF9E00643696 /* HackerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AABEB1EBAAF9E00643696 /* HackerNews.swift */; };
 		B0A3A04D1EE4FE3000BC6000 /* FavoriteStoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A3A04C1EE4FE3000BC6000 /* FavoriteStoryViewCell.swift */; };
+		B0C892CF1EEE69780012A53F /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C892CE1EEE69780012A53F /* MainSplitViewController.swift */; };
 		B0D029CA1EC07B4500737505 /* CommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D029C91EC07B4500737505 /* CommentListViewController.swift */; };
 		B0D814641EDFA91100B2B4B5 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D814631EDFA91100B2B4B5 /* Story.swift */; };
 		B0D814681EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D814671EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift */; };
@@ -48,6 +49,7 @@
 		B07AABE71EBAA25200643696 /* StoryListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListViewCell.swift; sourceTree = "<group>"; };
 		B07AABEB1EBAAF9E00643696 /* HackerNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerNews.swift; sourceTree = "<group>"; };
 		B0A3A04C1EE4FE3000BC6000 /* FavoriteStoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteStoryViewCell.swift; sourceTree = "<group>"; };
+		B0C892CE1EEE69780012A53F /* MainSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		B0D029C91EC07B4500737505 /* CommentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
 		B0D814631EDFA91100B2B4B5 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		B0D814671EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteStoryListViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		B07AABE91EBAAF1D00643696 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B0C892CE1EEE69780012A53F /* MainSplitViewController.swift */,
 				B07AABE71EBAA25200643696 /* StoryListViewCell.swift */,
 				B0262B211ECBD2580046E2F7 /* NewStoryViewCell.swift */,
 				B0262B251ECC09800046E2F7 /* BestStoryViewCell.swift */,
@@ -223,6 +226,7 @@
 				B0E7FE9D1EBBF57A004F44B3 /* StoryViewController.swift in Sources */,
 				B07AABE81EBAA25200643696 /* StoryListViewCell.swift in Sources */,
 				B0D814681EE0B44700B2B4B5 /* FavoriteStoryListViewController.swift in Sources */,
+				B0C892CF1EEE69780012A53F /* MainSplitViewController.swift in Sources */,
 				B0262B221ECBD2580046E2F7 /* NewStoryViewCell.swift in Sources */,
 				B07AABD31EBA9E9D00643696 /* AppDelegate.swift in Sources */,
 				B0262B201ECBCEBF0046E2F7 /* NewStoryListViewController.swift in Sources */,
