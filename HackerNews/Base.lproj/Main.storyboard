@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QOp-Wl-66q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cEc-q1-YHe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -572,11 +572,25 @@
             </objects>
             <point key="canvasLocation" x="1390" y="-914"/>
         </scene>
+        <!--Split View Controller-->
+        <scene sceneID="1kh-PR-Bsh">
+            <objects>
+                <splitViewController id="cEc-q1-YHe" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="QOp-Wl-66q" kind="relationship" relationship="masterViewController" id="9K0-n2-4pf"/>
+                        <segue destination="xMp-9B-tRr" kind="relationship" relationship="detailViewController" id="cvJ-LH-t5Y"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fBR-Zu-PNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="582" y="-2114"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="bCT-sr-Uxc">
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="QOp-Wl-66q" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="T5b-HD-fCQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b2E-dZ-kF1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -588,7 +602,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mu-RY-exk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1870" y="-619"/>
+            <point key="canvasLocation" x="-1980" y="-1378"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rb1-uA-s27">
@@ -608,7 +622,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8e-Tw-ex8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="-619"/>
+            <point key="canvasLocation" x="582" y="-619"/>
         </scene>
     </scenes>
     <resources>
@@ -620,6 +634,6 @@
         <image name="topStory" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Evh-2q-SOv"/>
+        <segue reference="cvJ-LH-t5Y"/>
     </inferredMetricsTieBreakers>
 </document>
