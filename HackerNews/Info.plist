@@ -2,33 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>3dTouchFavorite</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.jberria.favoritestories</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Favorite Stories</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>3dTouchBest</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.jberria.beststories</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Best Stories</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>3dTouchNew</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.jberria.newstories</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>New Stories</string>
-		</dict>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -44,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -54,6 +27,33 @@
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3dTouchFavorite</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Favorite Stories</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.jberria.favoritestories</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3dTouchBest</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Best Stories</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.jberria.beststories</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>3dTouchNew</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>New Stories</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.jberria.newstories</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
