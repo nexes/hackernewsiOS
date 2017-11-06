@@ -104,11 +104,11 @@ class HackerNews: NSObject, URLSessionDataDelegate {
             if var dataString = String(bytes: data, encoding: .utf8) {
 
                 //remove "]" and "[" if present
-                if let openBraceChar = dataString.characters.index(of: "[") {
+                if let openBraceChar = dataString.index(of: "[") {
                     dataString.remove(at: openBraceChar)
                 }
 
-                if let closeBraceChar = dataString.characters.index(of: "]") {
+                if let closeBraceChar = dataString.index(of: "]") {
                     dataString.remove(at: closeBraceChar)
                 }
 
